@@ -1,5 +1,5 @@
 import { Field } from "formik";
-import { InputHTMLAttributes, TextareaHTMLAttributes } from "react";
+import { InputHTMLAttributes, SelectHTMLAttributes, TextareaHTMLAttributes } from "react";
 import { Row, Col, Label } from "reactstrap";
 import { InputType } from "reactstrap/es/Input";
 import styled from "styled-components";
@@ -35,7 +35,14 @@ export function CampoFormulario(props: CampoProps) {
   );
 }
 
-export function CampoSelectFormulario(props: CampoProps) {
+interface CampoSelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
+  htmlFor?: string;
+  label?: string;
+  erro?: any;
+  lista: any[];
+}
+
+export function CampoSelectFormulario(props: CampoSelectProps) {
   return (
     <CampoFormularioEstilizado>
       <Col md={12}>
@@ -43,23 +50,27 @@ export function CampoSelectFormulario(props: CampoProps) {
       </Col>
       <Col md={12}>
         <Field
-          type={props.type}
-          render={props.renderMask}
+          component="select"
           {...props}
-        />
+        >
+          <option value="">Selecione</option>
+          {props.lista.map((item, index) => (
+            <option key={index} value={item}>{item}</option>
+          ))}
+        </Field>
       </Col>
       {props.erro}
     </CampoFormularioEstilizado>
   );
 }
 
-interface CampoTextAreaFormularioProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+interface CampoTextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   htmlFor?: string;
   label?: string;
   erro?: any;
 }
 
-export function CampoTextAreaFormulario(props: CampoTextAreaFormularioProps) {
+export function CampoTextAreaFormulario(props: CampoTextAreaProps) {
   return (
     <CampoFormularioEstilizado>
       <Col md={12}>

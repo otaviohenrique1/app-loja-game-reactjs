@@ -3,10 +3,11 @@ import { Titulo } from "../../components/Titulo";
 import styled from "styled-components";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import { CampoFormulario, Separador } from "../../components/Campo";
+import { CampoFormulario, CampoSelectFormulario, CampoTextAreaFormulario, Separador } from "../../components/Campo";
 import { Botao, BotaoLink, ContainerBotoes } from "../../components/Botao";
 import { MensagemErro } from "../../components/Mensagem";
 import { MensagemErroCampoVazio } from "../../utils/utils";
+import { estado_lista, sexo_lista } from "../../utils/listas";
 
 interface FormValues {
   nome: string;
@@ -136,7 +137,22 @@ export function Cadastro() {
                 )}
               />
             </CampoFormularioEstilizado>
-            [sexo]
+            <CampoFormularioEstilizado>
+              <CampoSelectFormulario
+                id="sexo"
+                htmlFor="sexo"
+                label="Sexo"
+                placeholder="Digite o seu sexo"
+                className="form-control"
+                erro={(errors.sexo && touched.sexo) && (
+                  <MensagemErro
+                    color='danger'
+                    mensagem={errors.sexo}
+                  />
+                )}
+                lista={sexo_lista}
+              />
+            </CampoFormularioEstilizado>
             <CampoFormularioEstilizado>
               <CampoFormulario
                 type="date"
@@ -188,10 +204,24 @@ export function Cadastro() {
                 )}
               />
             </CampoFormularioEstilizado>
-            [estado]
             <CampoFormularioEstilizado>
-              <CampoFormulario
-                type="textarea"
+              <CampoSelectFormulario
+                id="estado"
+                htmlFor="estado"
+                label="Estado"
+                placeholder="Digite o seu estado"
+                className="form-control"
+                erro={(errors.estado && touched.estado) && (
+                  <MensagemErro
+                    color='danger'
+                    mensagem={errors.estado}
+                  />
+                )}
+                lista={estado_lista}
+              />
+            </CampoFormularioEstilizado>
+            <CampoFormularioEstilizado>
+              <CampoTextAreaFormulario
                 name="resumo"
                 id="resumo"
                 htmlFor="resumo"
