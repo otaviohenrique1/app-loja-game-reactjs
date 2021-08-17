@@ -7,6 +7,7 @@ import { CampoFormulario, Separador } from "../../components/Campo";
 import { Botao, BotaoLink, ContainerBotoes } from "../../components/Botao";
 import { MensagemErro } from "../../components/Mensagem";
 import { MensagemErroCampoVazio } from "../../utils/utils";
+import { useHistory } from "react-router-dom";
 
 interface FormValues {
   email: string;
@@ -31,6 +32,8 @@ const ValidationSchema = Yup.object().shape({
 });
 
 export function Login() {
+  const history = useHistory();
+  
   function handleSubmitForm(values: FormValues, actions: FormikHelpers<FormValues>) {
     let data: FormValues = {
       email: values.email,
@@ -44,6 +47,7 @@ export function Login() {
         senha: ''
       }
     });
+    history.push('/dashboard');
   }
 
   return (
