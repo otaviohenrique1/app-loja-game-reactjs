@@ -9,6 +9,11 @@ interface CampoProps extends InputHTMLAttributes<HTMLInputElement> {
   htmlFor?: string;
   label?: string;
   renderMask?: any;
+  className?: string;
+  name?: string;
+  id?: string;
+  placeholder?: string;
+  value?: any;
   erro?: any;
 }
 
@@ -25,6 +30,11 @@ export function CampoFormulario(props: CampoProps) {
       </Col>
       <Col md={12}>
         <Field
+          className={props.className}
+          name={props.name}
+          id={props.id}
+          placeholder={props.placeholder}
+          value={props.value}
           type={props.type}
           render={props.renderMask}
           {...props}
@@ -36,6 +46,12 @@ export function CampoFormulario(props: CampoProps) {
 }
 
 interface CampoSelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
+  renderMask?: any;
+  className?: string;
+  name?: string;
+  id?: string;
+  placeholder?: string;
+  value?: any;
   htmlFor?: string;
   label?: string;
   erro?: any;
@@ -50,6 +66,11 @@ export function CampoSelectFormulario(props: CampoSelectProps) {
       </Col>
       <Col md={12}>
         <Field
+          className={props.className}
+          name={props.name}
+          id={props.id}
+          placeholder={props.placeholder}
+          value={props.value}
           component="select"
           {...props}
         >
@@ -65,6 +86,12 @@ export function CampoSelectFormulario(props: CampoSelectProps) {
 }
 
 interface CampoTextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+  renderMask?: any;
+  className?: string;
+  name?: string;
+  id?: string;
+  placeholder?: string;
+  value?: any;
   htmlFor?: string;
   label?: string;
   erro?: any;
@@ -78,6 +105,11 @@ export function CampoTextAreaFormulario(props: CampoTextAreaProps) {
       </Col>
       <Col md={12}>
         <Field
+          className={props.className}
+          name={props.name}
+          id={props.id}
+          placeholder={props.placeholder}
+          value={props.value}
           component="textarea"
           {...props}
         />

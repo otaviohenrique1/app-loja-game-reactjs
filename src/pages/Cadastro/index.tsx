@@ -8,6 +8,7 @@ import { Botao, BotaoLink, ContainerBotoes } from "../../components/Botao";
 import { MensagemErro } from "../../components/Mensagem";
 import { MensagemErroCampoVazio } from "../../utils/utils";
 import { estado_lista, sexo_lista } from "../../utils/listas";
+import InputMask from "react-input-mask";
 
 interface FormValues {
   nome: string;
@@ -51,12 +52,26 @@ const ValidationSchema = Yup.object().shape({
   estado: Yup.string().required(MensagemErroCampoVazio('estado')),
   resumo: Yup.string().required(MensagemErroCampoVazio('resumo')),
   celular: Yup.string().required(MensagemErroCampoVazio('celular')),
-  url_personalizado: Yup.string().required(MensagemErroCampoVazio('url personalizado'))
+  url_personalizado: Yup.string().url('URL não valida').required(MensagemErroCampoVazio('url personalizado'))
 });
 
 export function Cadastro() {
   function handleSubmitForm(values: FormValues) {
-    // 
+    let data: FormValues = {
+      nome: values.nome,
+      perfil: values.perfil,
+      email: values.email,
+      senha: values.senha,
+      sexo: values.sexo,
+      data_nascimento: values.data_nascimento,
+      pais: values.pais,
+      cidade: values.cidade,
+      estado: values.estado,
+      resumo: values.resumo,
+      celular: values.celular,
+      url_personalizado: values.url_personalizado
+    };
+    console.log(data);
   }
 
   return (
@@ -245,6 +260,11 @@ export function Cadastro() {
                 label="Celular"
                 placeholder="Digite o seu celular"
                 className="form-control"
+                renderMask={() => <InputMask
+                  className="form-control"
+                  mask="(99)99999.9999"
+                  placeholder="Digite o celular"
+                />}
                 erro={(errors.celular && touched.celular) && (
                   <MensagemErro
                     color='danger'

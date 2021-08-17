@@ -32,7 +32,11 @@ const ValidationSchema = Yup.object().shape({
 
 export function Login() {
   function handleSubmitForm(values: FormValues) {
-    // 
+    let data: FormValues = {
+      email: values.email,
+      senha: values.senha
+    };
+    console.log(data);
   }
 
   return (
