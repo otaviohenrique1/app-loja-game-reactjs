@@ -1,7 +1,7 @@
 import { Container } from "reactstrap";
 import { Titulo } from "../../components/Titulo";
 import styled from "styled-components";
-import { Formik, Form } from "formik";
+import { Formik, Form, FormikHelpers } from "formik";
 import * as Yup from "yup";
 import { CampoFormulario, Separador } from "../../components/Campo";
 import { Botao, BotaoLink, ContainerBotoes } from "../../components/Botao";
@@ -31,12 +31,19 @@ const ValidationSchema = Yup.object().shape({
 });
 
 export function Login() {
-  function handleSubmitForm(values: FormValues) {
+  function handleSubmitForm(values: FormValues, actions: FormikHelpers<FormValues>) {
     let data: FormValues = {
       email: values.email,
       senha: values.senha
     };
     console.log(data);
+    actions.setSubmitting(false);
+    actions.resetForm({
+      values: {
+        email: '',
+        senha: ''
+      }
+    });
   }
 
   return (
@@ -47,7 +54,7 @@ export function Login() {
         validationSchema={ValidationSchema}
         onSubmit={handleSubmitForm}
       >
-        {({ errors, touched }) => (
+        {({ errors, touched, values }) => (
           <FormularioEstilizado>
             <CampoFormularioEstilizado>
               <CampoFormulario
@@ -58,6 +65,7 @@ export function Login() {
                 label="Email"
                 placeholder="Digite o seu email"
                 className="form-control"
+                value={values.email}
                 erro={(errors.email && touched.email) && (
                   <MensagemErro
                     color='danger'
@@ -75,6 +83,7 @@ export function Login() {
                 label="Senha"
                 placeholder="Digite a sua senha"
                 className="form-control"
+                value={values.senha}
                 erro={(errors.senha && touched.senha) && (
                   <MensagemErro
                     color='danger'

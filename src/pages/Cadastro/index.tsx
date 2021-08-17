@@ -1,22 +1,21 @@
 import { Container } from "reactstrap";
 import { Titulo } from "../../components/Titulo";
 import styled from "styled-components";
-import { Formik, Form } from "formik";
+import { Formik, Form, FormikHelpers } from "formik";
 import * as Yup from "yup";
 import { CampoFormulario, CampoSelectFormulario, CampoTextAreaFormulario, Separador } from "../../components/Campo";
 import { Botao, BotaoLink, ContainerBotoes } from "../../components/Botao";
 import { MensagemErro } from "../../components/Mensagem";
 import { MensagemErroCampoVazio } from "../../utils/utils";
 import { estado_lista, sexo_lista } from "../../utils/listas";
-import InputMask from "react-input-mask";
-
 interface FormValues {
   nome: string;
   perfil: string;
   email: string;
   senha: string;
   sexo: string;
-  data_nascimento: Date;
+  data_nascimento: string;
+  // data_nascimento: Date;
   pais: string;
   cidade: string;
   estado: string;
@@ -31,7 +30,8 @@ const InitialValues: FormValues = {
   email: '',
   senha: '',
   sexo: '',
-  data_nascimento: new Date(`${new Date().getDate()} / ${new Date().getMonth() + 1} / ${new Date().getFullYear()}`),
+  data_nascimento: '',
+  // data_nascimento: new Date(`${new Date().getDate()} / ${new Date().getMonth() + 1} / ${new Date().getFullYear()}`),
   pais: '',
   cidade: '',
   estado: '',
@@ -46,17 +46,18 @@ const ValidationSchema = Yup.object().shape({
   email: Yup.string().email('Email não valido').required(MensagemErroCampoVazio('email')),
   senha: Yup.string().min(8, 'Minimo de 8 caracteres').max(32, 'Maximo de 32 caracteres').required(MensagemErroCampoVazio('senha')),
   sexo: Yup.string().required(MensagemErroCampoVazio('sexo')),
-  data_nascimento: Yup.date().required(MensagemErroCampoVazio('data de nascimento')),
+  data_nascimento: Yup.string().required(MensagemErroCampoVazio('data de nascimento')),
+  // data_nascimento: Yup.date().required(MensagemErroCampoVazio('data de nascimento')),
   pais: Yup.string().required(MensagemErroCampoVazio('pais')),
   cidade: Yup.string().required(MensagemErroCampoVazio('cidade')),
   estado: Yup.string().required(MensagemErroCampoVazio('estado')),
   resumo: Yup.string().required(MensagemErroCampoVazio('resumo')),
   celular: Yup.string().required(MensagemErroCampoVazio('celular')),
-  url_personalizado: Yup.string().url('URL não valida').required(MensagemErroCampoVazio('url personalizado'))
+  url_personalizado: Yup.string().required(MensagemErroCampoVazio('url personalizado'))
 });
 
 export function Cadastro() {
-  function handleSubmitForm(values: FormValues) {
+  function handleSubmitForm(values: FormValues, actions: FormikHelpers<FormValues>) {
     let data: FormValues = {
       nome: values.nome,
       perfil: values.perfil,
@@ -72,17 +73,21 @@ export function Cadastro() {
       url_personalizado: values.url_personalizado
     };
     console.log(data);
+    actions.setSubmitting(false);
+    actions.resetForm({
+      values: InitialValues
+    });
   }
 
   return (
     <ContainerCadastro>
-      <Titulo titulo='Login' />
+      <Titulo titulo='Cadastro' />
       <Formik
         initialValues={InitialValues}
         validationSchema={ValidationSchema}
         onSubmit={handleSubmitForm}
       >
-        {({ errors, touched }) => (
+        {({ errors, touched, values }) => (
           <FormularioEstilizado>
             <CampoFormularioEstilizado>
               <CampoFormulario
@@ -93,6 +98,7 @@ export function Cadastro() {
                 label="Nome"
                 placeholder="Digite o seu nome"
                 className="form-control"
+                value={values.nome}
                 erro={(errors.nome && touched.nome) && (
                   <MensagemErro
                     color='danger'
@@ -110,6 +116,7 @@ export function Cadastro() {
                 label="Perfil"
                 placeholder="Digite o seu perfil"
                 className="form-control"
+                value={values.perfil}
                 erro={(errors.perfil && touched.perfil) && (
                   <MensagemErro
                     color='danger'
@@ -127,6 +134,7 @@ export function Cadastro() {
                 label="Email"
                 placeholder="Digite o seu email"
                 className="form-control"
+                value={values.email}
                 erro={(errors.email && touched.email) && (
                   <MensagemErro
                     color='danger'
@@ -144,6 +152,7 @@ export function Cadastro() {
                 label="Senha"
                 placeholder="Digite a sua senha"
                 className="form-control"
+                value={values.senha}
                 erro={(errors.senha && touched.senha) && (
                   <MensagemErro
                     color='danger'
@@ -159,6 +168,7 @@ export function Cadastro() {
                 label="Sexo"
                 placeholder="Digite o seu sexo"
                 className="form-control"
+                value={values.senha}
                 erro={(errors.sexo && touched.sexo) && (
                   <MensagemErro
                     color='danger'
@@ -177,6 +187,7 @@ export function Cadastro() {
                 label="Data de nascimento"
                 placeholder="Digite a sua data de nascimento"
                 className="form-control"
+                value={values.data_nascimento}
                 erro={(errors.data_nascimento && touched.data_nascimento) && (
                   <MensagemErro
                     color='danger'
@@ -194,6 +205,7 @@ export function Cadastro() {
                 label="Pais"
                 placeholder="Digite o seu pais"
                 className="form-control"
+                value={values.pais}
                 erro={(errors.pais && touched.pais) && (
                   <MensagemErro
                     color='danger'
@@ -211,6 +223,7 @@ export function Cadastro() {
                 label="Cidade"
                 placeholder="Digite o seu cidade"
                 className="form-control"
+                value={values.cidade}
                 erro={(errors.cidade && touched.cidade) && (
                   <MensagemErro
                     color='danger'
@@ -226,6 +239,7 @@ export function Cadastro() {
                 label="Estado"
                 placeholder="Digite o seu estado"
                 className="form-control"
+                value={values.estado}
                 erro={(errors.estado && touched.estado) && (
                   <MensagemErro
                     color='danger'
@@ -243,6 +257,7 @@ export function Cadastro() {
                 label="Resumo"
                 placeholder="Digite o seu resumo"
                 className="form-control"
+                value={values.resumo}
                 erro={(errors.resumo && touched.resumo) && (
                   <MensagemErro
                     color='danger'
@@ -258,13 +273,9 @@ export function Cadastro() {
                 id="celular"
                 htmlFor="celular"
                 label="Celular"
-                placeholder="Digite o seu celular"
                 className="form-control"
-                renderMask={() => <InputMask
-                  className="form-control"
-                  mask="(99)99999.9999"
-                  placeholder="Digite o celular"
-                />}
+                placeholder="Digite o seu celular"
+                value={values.celular}
                 erro={(errors.celular && touched.celular) && (
                   <MensagemErro
                     color='danger'
@@ -282,6 +293,7 @@ export function Cadastro() {
                 label="URL personalizado"
                 placeholder="Digite a sua URL personalizada"
                 className="form-control"
+                value={values.url_personalizado}
                 erro={(errors.url_personalizado && touched.url_personalizado) && (
                   <MensagemErro
                     color='danger'
@@ -294,7 +306,7 @@ export function Cadastro() {
             <ContainerBotoesEstilizado>
               <Botao
                 color="primary"
-                labelButton="Entrar"
+                labelButton="Salvar"
                 type="submit"
               />
               <BotaoEstilizado>
@@ -305,10 +317,10 @@ export function Cadastro() {
                 />
               </BotaoEstilizado>
               <BotaoLink
-                color="success"
-                labelButton="Novo"
+                color="info"
+                labelButton="Voltar"
                 type="button"
-                rota="/cadastro/usuario"
+                rota="/"
               />
             </ContainerBotoesEstilizado>
           </FormularioEstilizado>

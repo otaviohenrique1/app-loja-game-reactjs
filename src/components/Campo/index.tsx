@@ -8,7 +8,6 @@ interface CampoProps extends InputHTMLAttributes<HTMLInputElement> {
   type?: InputType;
   htmlFor?: string;
   label?: string;
-  renderMask?: any;
   className?: string;
   name?: string;
   id?: string;
@@ -36,7 +35,6 @@ export function CampoFormulario(props: CampoProps) {
           placeholder={props.placeholder}
           value={props.value}
           type={props.type}
-          render={props.renderMask}
           {...props}
         />
       </Col>
@@ -46,7 +44,6 @@ export function CampoFormulario(props: CampoProps) {
 }
 
 interface CampoSelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
-  renderMask?: any;
   className?: string;
   name?: string;
   id?: string;
@@ -71,7 +68,7 @@ export function CampoSelectFormulario(props: CampoSelectProps) {
           id={props.id}
           placeholder={props.placeholder}
           value={props.value}
-          component="select"
+          as="select"
           {...props}
         >
           <option value="">Selecione</option>
@@ -86,7 +83,6 @@ export function CampoSelectFormulario(props: CampoSelectProps) {
 }
 
 interface CampoTextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
-  renderMask?: any;
   className?: string;
   name?: string;
   id?: string;
@@ -110,7 +106,7 @@ export function CampoTextAreaFormulario(props: CampoTextAreaProps) {
           id={props.id}
           placeholder={props.placeholder}
           value={props.value}
-          component="textarea"
+          as="textarea"
           {...props}
         />
       </Col>
