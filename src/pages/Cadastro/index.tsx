@@ -8,6 +8,7 @@ import { Botao, BotaoLink, ContainerBotoes } from "../../components/Botao";
 import { MensagemErro } from "../../components/Mensagem";
 import { MensagemErroCampoVazio } from "../../utils/utils";
 import { estado_lista, sexo_lista } from "../../utils/listas";
+import { useHistory } from "react-router-dom";
 interface FormValues {
   nome: string;
   perfil: string;
@@ -57,6 +58,8 @@ const ValidationSchema = Yup.object().shape({
 });
 
 export function Cadastro() {
+  const history = useHistory();
+
   function handleSubmitForm(values: FormValues, actions: FormikHelpers<FormValues>) {
     let data: FormValues = {
       nome: values.nome,
@@ -77,6 +80,7 @@ export function Cadastro() {
     actions.resetForm({
       values: InitialValues
     });
+    history.push('/');
   }
 
   return (
@@ -355,5 +359,8 @@ const ContainerCadastro = styled(Container)`
   margin-top: 5%;
   margin-bottom: 5%;
   position: relative;
-  width: auto;
+  width: 400px;
+  background-color: lightblue;
+  padding: 2%;
+  border-radius: 10px;
 `;

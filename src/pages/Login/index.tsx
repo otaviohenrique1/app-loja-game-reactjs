@@ -145,5 +145,8 @@ const ContainerLogin = styled(Container)`
   margin-top: 5%;
   margin-bottom: 5%;
   position: relative;
-  width: auto;
+  width: 400px;
+  background-color: lightblue;
+  padding: 2%;
+  border-radius: 10px;
 `;
