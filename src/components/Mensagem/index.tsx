@@ -4,7 +4,7 @@ type ColorTypesMensagem = 'primary' | 'secondary' | 'success' | 'danger' |
   'warning' | 'info' | 'light' | 'dark';
 
 interface MensagemProps {
-  mensagem: string;
+  mensagem: any;
   color: ColorTypesMensagem;
 }
 

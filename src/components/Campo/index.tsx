@@ -1,5 +1,5 @@
 import { Field } from "formik";
-import { InputHTMLAttributes } from "react";
+import { InputHTMLAttributes, TextareaHTMLAttributes } from "react";
 import { Row, Col, Label } from "reactstrap";
 import { InputType } from "reactstrap/es/Input";
 import styled from "styled-components";
@@ -27,6 +27,47 @@ export function CampoFormulario(props: CampoProps) {
         <Field
           type={props.type}
           render={props.renderMask}
+          {...props}
+        />
+      </Col>
+      {props.erro}
+    </CampoFormularioEstilizado>
+  );
+}
+
+export function CampoSelectFormulario(props: CampoProps) {
+  return (
+    <CampoFormularioEstilizado>
+      <Col md={12}>
+        <Label htmlFor={props.htmlFor}>{props.label}</Label>
+      </Col>
+      <Col md={12}>
+        <Field
+          type={props.type}
+          render={props.renderMask}
+          {...props}
+        />
+      </Col>
+      {props.erro}
+    </CampoFormularioEstilizado>
+  );
+}
+
+interface CampoTextAreaFormularioProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+  htmlFor?: string;
+  label?: string;
+  erro?: any;
+}
+
+export function CampoTextAreaFormulario(props: CampoTextAreaFormularioProps) {
+  return (
+    <CampoFormularioEstilizado>
+      <Col md={12}>
+        <Label htmlFor={props.htmlFor}>{props.label}</Label>
+      </Col>
+      <Col md={12}>
+        <Field
+          component="textarea"
           {...props}
         />
       </Col>

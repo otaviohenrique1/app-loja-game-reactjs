@@ -43,7 +43,7 @@ export function Login() {
         validationSchema={ValidationSchema}
         onSubmit={handleSubmitForm}
       >
-        {({errors, touched, resetForm}) => (
+        {({ errors, touched }) => (
           <FormularioEstilizado>
             <CampoFormularioEstilizado>
               <CampoFormulario
@@ -122,7 +122,6 @@ const FormularioEstilizado = styled(Form)`
 
 const ContainerBotoesEstilizado = styled(ContainerBotoes)`
   margin-top: 30px;
-  /* justify-content: space-between; */
 `;
 
 const ContainerLogin = styled(Container)`
@@ -131,6 +130,7 @@ const ContainerLogin = styled(Container)`
   justify-content: center;
   align-items: center;
   margin-top: 5%;
+  margin-bottom: 5%;
   position: relative;
   width: auto;
 `;
