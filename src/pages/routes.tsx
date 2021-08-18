@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { Cadastro } from './Cadastro';
-import { Dashboard } from './dashboard';
+import { Dashboard } from './Dashboard';
 import { Login } from './Login';
 
 export default function Routes() {
