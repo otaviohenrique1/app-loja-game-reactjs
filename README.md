@@ -1,44 +1,110 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+# app-loja-game-reactjs
+## Criar projeto
+  npx create-react-app app-loja-game-reactjs
+  npx create-react-app app-loja-game-reactjs --template redux-typescript
+  ou
+  yarn create react-app app-loja-game-reactjs
+  yarn create react-app app-loja-game-reactjs --template redux-typescript
 
-## Available Scripts
+## Instalar pacotes do projeto
+  npm install
+  ou
+  yarn install
 
-In the project directory, you can run:
+## Iniciar o projeto
+  npm start
+  ou
+  yarn start
 
-### `yarn start`
+## Instalar @reduxjs/toolkit
+  npm install --save @reduxjs/toolkit
+  ou
+  yarn add @reduxjs/toolkit
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Instalar react-redux
+  npm install --save react-redux
+  npm install -D @types/react-redux
+  ou
+  yarn add react-redux
+  yarn add -D @types/react-redux
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Instalar styled-components
+  npm install --save styled-components
+  npm install -D @types/styled-components
+  ou
+  yarn add styled-components
+  yarn add -D @types/styled-components
 
-### `yarn test`
+## Instalar react-router-dom
+  npm install react-router-dom
+  npm install -D @types/react-router-dom
+  ou
+  yarn add react-router-dom
+  yarn add -D @types/react-router-dom
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Instalar react-icons
+  npm install --save react-icons
+  ou
+  yarn add react-icons
 
-### `yarn build`
+## Instalar react-paginate
+  npm install --save react-paginate
+  npm install -D @types/react-paginate
+  ou
+  yarn add react-paginate
+  yarn add -D @types/react-paginate
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Instalar react-elastic-carousel
+  npm install --save react-elastic-carousel
+  ou
+  yarn add react-elastic-carousel
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## Instalar axios
+  npm install axios
+  ou
+  yarn add axios
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Instalar 
+  npm install formik
+  ou
+  yarn add formik
 
-### `yarn eject`
+## Instalar yup
+  npm install yup
+  npm install -D @types/yup
+  ou
+  yarn add yup
+  yarn add -D @types/yup
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Instalar reactstrap
+  npm install --save reactstrap
+  ou
+  yarn add reactstrap
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Instalar bootstrap
+  npm install --save bootstrap@4.6.0
+  ou
+  yarn add bootstrap@4.6.0
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Instalar jquery
+  npm install --save jquery
+  ou
+  yarn add jquery
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Instalar react-popper @popperjs/core
+  npm install --save react-popper @popperjs/core
+  ou
+  yarn add react-popper @popperjs/core
+  
+## Opcional
+  ### Instalar react-input-mask
+    npm install --save react-input-mask
+    npm install -D @types/react-input-mask
+    ou
+    yarn add react-input-mask
+    yarn add -D @types/react-input-mask
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+  ### Instalar react-bootstrap@next bootstrap@5.0.2
+    npm install react-bootstrap@next bootstrap@5.0.2
+    ou
+    yarn add react-bootstrap@next bootstrap@5.0.2
