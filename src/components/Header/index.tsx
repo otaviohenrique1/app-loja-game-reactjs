@@ -3,7 +3,8 @@ import { Collapse, DropdownItem, DropdownMenu, DropdownToggle, Nav, Navbar, Navb
 import { BiUserCircle } from "react-icons/bi";
 import { CgGames } from "react-icons/cg";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
+import { BotaoDropdownLink } from "../Botao";
 
 const AvatarLogo = styled.div`
   border-radius: 100%;
@@ -11,7 +12,21 @@ const AvatarLogo = styled.div`
   height: 30px;
 `;
 
-export function Header() {
+const AvatarPerfil = styled.p`
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 5px;
+  margin-right: 5px;
+`;
+
+interface HeaderProps {
+  id?: string;
+  nome?: string;
+  perfil?: string;
+  email?: string;
+}
+
+export function Header(props: HeaderProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const toggle = () => setIsOpen(!isOpen);
 
@@ -48,7 +63,7 @@ export function Header() {
               </DropdownItem>
               <DropdownItem divider />
               <DropdownItem>
-                Reset
+                Todas as categorias
               </DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
@@ -64,6 +79,7 @@ export function Header() {
               <AvatarLogo>
                 <BiUserCircle size={30} />
               </AvatarLogo>
+              <AvatarPerfil>{props.perfil || "Perfil"}</AvatarPerfil>
             </DropdownToggle>
             <DropdownMenu right>
               <DropdownItem>
@@ -76,7 +92,11 @@ export function Header() {
                 Lista de desejos
               </DropdownItem>
               <DropdownItem divider />
-              <Link
+              <BotaoDropdownLink
+                to='/'
+                labelButton='Sair'
+              />
+              {/* <Link
                 to='/'
                 style={{
                   textDecoration: 'none'
@@ -85,7 +105,7 @@ export function Header() {
                 <DropdownItem>
                   Sair
                 </DropdownItem>
-              </Link>
+              </Link> */}
             </DropdownMenu>
           </UncontrolledDropdown>
         </Nav>

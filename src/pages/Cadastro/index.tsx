@@ -9,6 +9,8 @@ import { MensagemErro } from "../../components/Mensagem";
 import { MensagemErroCampoVazio } from "../../utils/utils";
 import { estado_lista, sexo_lista } from "../../utils/listas";
 import { useHistory } from "react-router-dom";
+import api from "../../services/api";
+
 interface FormValues {
   nome: string;
   perfil: string;
@@ -60,7 +62,7 @@ const ValidationSchema = Yup.object().shape({
 export function Cadastro() {
   const history = useHistory();
 
-  function handleSubmitForm(values: FormValues, actions: FormikHelpers<FormValues>) {
+  async function handleSubmitForm(values: FormValues, actions: FormikHelpers<FormValues>) {
     let data: FormValues = {
       nome: values.nome,
       perfil: values.perfil,
@@ -75,6 +77,34 @@ export function Cadastro() {
       celular: values.celular,
       url_personalizado: values.url_personalizado
     };
+
+    let dia = new Date(`${new Date().getDate()}`);
+    let mes = new Date(`${new Date().getMonth() + 1}`);
+    let ano = new Date(`${new Date().getFullYear()}`);
+
+    await api.post('usuarios', {
+      'nome': (values.nome).toString(),
+      'perfil': (values.perfil).toString(),
+      'resumo': (values.resumo).toString(),
+      'url_personalizado': (values.url_personalizado).toString(),
+      'sexo': (values.sexo).toString(),
+      'data_nascimento': (values.data_nascimento).toString(),
+      'email': (values.email).toString(),
+      'senha': ((values.senha).toString()),
+      'celular': (values.celular).toString(),
+      'pais': (values.pais).toString(),
+      'cidade': (values.cidade).toString(),
+      'estado': (values.estado).toString(),
+      'data_cadastro': (`${dia}/${mes}/${ano}`).toString(),
+    })
+    .then(() => {
+      alert('Cadastro realizado com sucesso!');
+      history.push('/');
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
     console.log(data);
     actions.setSubmitting(false);
     actions.resetForm({
@@ -172,7 +202,7 @@ export function Cadastro() {
                 label="Sexo"
                 placeholder="Digite o seu sexo"
                 className="form-control"
-                value={values.senha}
+                value={values.sexo}
                 erro={(errors.sexo && touched.sexo) && (
                   <MensagemErro
                     color='danger'

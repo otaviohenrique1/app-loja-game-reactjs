@@ -19,7 +19,10 @@ const ContainerEstilizado = styled(Container)`
 export function ContainerApp(props: ContainerAppProps) {
   return (
     <>
-      <Header />
+      <Header
+        id="1"
+        perfil="Usuario"
+      />
       <ContainerEstilizado>
         {props.children}
       </ContainerEstilizado>

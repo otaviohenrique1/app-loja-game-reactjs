@@ -8,6 +8,9 @@ import { Botao, BotaoLink, ContainerBotoes } from "../../components/Botao";
 import { MensagemErro } from "../../components/Mensagem";
 import { MensagemErroCampoVazio } from "../../utils/utils";
 import { useHistory } from "react-router-dom";
+import { adicionaLogin } from "../../features/login/LoginSlice";
+import { useDispatch } from "react-redux";
+import api from "../../services/api";
 
 interface FormValues {
   email: string;
@@ -33,13 +36,28 @@ const ValidationSchema = Yup.object().shape({
 
 export function Login() {
   const history = useHistory();
+  const dispatch = useDispatch();
   
   function handleSubmitForm(values: FormValues, actions: FormikHelpers<FormValues>) {
-    let data: FormValues = {
+    api.post('usuarios/login', {
       email: values.email,
-      senha: values.senha
-    };
-    console.log(data);
+      senha: values.senha,
+    }, {
+      auth: {
+        username: values.email,
+        password: values.senha,
+      }
+    })
+    .then((data) => {
+      dispatch(adicionaLogin({
+        id: data.data.dataUser.id,
+        nome: data.data.dataUser.nome,
+      }));
+      history.push('/dashboard');
+    })
+    .catch((error) => {
+      console.log(error);
+    });
     actions.setSubmitting(false);
     actions.resetForm({
       values: {
@@ -47,7 +65,6 @@ export function Login() {
         senha: ''
       }
     });
-    history.push('/dashboard');
   }
 
   return (
