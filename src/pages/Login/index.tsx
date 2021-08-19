@@ -1,4 +1,4 @@
-import { Container } from "reactstrap";
+import { Alert, Container } from "reactstrap";
 import { Titulo } from "../../components/Titulo";
 import styled from "styled-components";
 import { Formik, Form, FormikHelpers } from "formik";
@@ -11,6 +11,7 @@ import { useHistory } from "react-router-dom";
 import { adicionaLogin } from "../../features/login/LoginSlice";
 import { useDispatch } from "react-redux";
 import api from "../../services/api";
+import { useState } from "react";
 
 interface FormValues {
   email: string;
@@ -37,7 +38,9 @@ const ValidationSchema = Yup.object().shape({
 export function Login() {
   const history = useHistory();
   const dispatch = useDispatch();
-  
+  const [mensagemErro, setMensagemErro] = useState<string>('');
+  const [exibeMensagemErro, setExibeMensagemErro] = useState<boolean>(false);
+
   function handleSubmitForm(values: FormValues, actions: FormikHelpers<FormValues>) {
     api.post('usuarios/login', {
       email: values.email,
@@ -56,6 +59,9 @@ export function Login() {
       history.push('/dashboard');
     })
     .catch((error) => {
+      // alert('Usuario ou senha invalidos');
+      setMensagemErro('Usuario ou senha invalidos');
+      setExibeMensagemErro(!exibeMensagemErro);
       console.log(error);
     });
     // actions.setSubmitting(false);
@@ -70,6 +76,18 @@ export function Login() {
   return (
     <ContainerLogin>
       <Titulo titulo='Login' />
+      {(exibeMensagemErro) ? (
+        <Alert
+          color="danger"
+          style={{
+            marginTop: '10px',
+            marginBottom: '10px',
+            width: '300px'
+          }}
+        >
+          {mensagemErro}
+        </Alert>
+      ) : null}
       <Formik
         initialValues={InitialValues}
         validationSchema={ValidationSchema}
