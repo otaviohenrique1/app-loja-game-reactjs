@@ -33,12 +33,7 @@ export function Header(props: HeaderProps) {
   return (
     <Navbar color="dark" dark expand="md">
       <NavbarBrand href="/dashboard">
-        <CgGames
-          size={30}
-          style={{
-            marginRight: '10px'
-          }}
-        />
+        <CgGames size={30} style={{ marginRight: '10px' }} />
         Vecx-Games
       </NavbarBrand>
       <NavbarToggler onClick={toggle} />

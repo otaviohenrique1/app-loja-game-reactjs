@@ -52,10 +52,14 @@ export function Login() {
       }
     })
     .then((data) => {
+      const id = data.data.data_user.id;
+      const nome = data.data.data_user.nome;
       dispatch(adicionaLogin({
-        id: data.data.data_user.id,
-        nome: data.data.data_user.nome,
+        id: id,
+        nome: nome,
       }));
+      sessionStorage.setItem('id', `${id}`);
+      sessionStorage.setItem('nome', `${nome}`);
       history.push('/dashboard');
     })
     .catch((error) => {
@@ -77,16 +81,11 @@ export function Login() {
     <ContainerLogin>
       <Titulo titulo='Login' />
       {(exibeMensagemErro) ? (
-        <Alert
-          color="danger"
-          style={{
-            marginTop: '10px',
-            marginBottom: '10px',
-            width: '300px'
-          }}
-        >
-          {mensagemErro}
-        </Alert>
+        <MensagemErroLogin>
+          <Alert color="danger" style={{ width: '300px' }}>
+            {mensagemErro}
+          </Alert>
+        </MensagemErroLogin>
       ) : null}
       <Formik
         initialValues={InitialValues}
@@ -158,6 +157,11 @@ export function Login() {
     </ContainerLogin>
   );
 }
+
+const MensagemErroLogin = styled.div`
+  margin-top: '10px';
+  margin-bottom: '10px';
+`;
 
 const CampoFormularioEstilizado = styled.div`
   margin-bottom: 20px;
