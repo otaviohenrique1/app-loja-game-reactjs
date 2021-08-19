@@ -19,34 +19,46 @@ export function ContainerApp(props: ContainerAppProps) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if(selector.login.id && selector.login.nome) {
+    if(selector.login.id &&
+      selector.login.nome &&
+      selector.login.perfil &&
+      selector.login.email) {
       setData({
         id: selector.login.id,
-        nome: selector.login.nome
+        nome: selector.login.nome,
+        perfil: selector.login.perfil,
+        email: selector.login.email,
       });
     } else {
       let id = sessionStorage.getItem('id');
       let nome = sessionStorage.getItem('nome');
+      let perfil = sessionStorage.getItem('perfil');
+      let email = sessionStorage.getItem('email');
   
-      if (id && nome) {
+      if (id && nome && perfil && email) {
         dispatch(adicionaLogin({
           id: id,
-          nome: nome
+          nome: nome,
+          perfil: perfil,
+          email: email,
         }));
         
         setData({
           id: selector.login.id,
-          nome: selector.login.nome
+          nome: selector.login.nome,
+          perfil: selector.login.perfil,
+          email: selector.login.email,
         });
       }
     }
     
-  }, [dispatch, selector.login.id, selector.login.nome]);
+  }, [dispatch, selector.login.email, selector.login.id, selector.login.nome, selector.login.perfil]);
 
   return (
     <>
       <Header
         id={data.id}
+        perfil={data.perfil}
       />
       <ContainerEstilizado>
         {props.children}

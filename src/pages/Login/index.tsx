@@ -54,12 +54,18 @@ export function Login() {
     .then((data) => {
       const id = data.data.data_user.id;
       const nome = data.data.data_user.nome;
+      const perfil = data.data.data_user.perfil;
+      const email = data.data.data_user.email;
       dispatch(adicionaLogin({
         id: id,
         nome: nome,
+        perfil: perfil,
+        email: email,
       }));
       sessionStorage.setItem('id', `${id}`);
       sessionStorage.setItem('nome', `${nome}`);
+      sessionStorage.setItem('perfil', `${perfil}`);
+      sessionStorage.setItem('email', `${email}`);
       history.push('/dashboard');
     })
     .catch((error) => {

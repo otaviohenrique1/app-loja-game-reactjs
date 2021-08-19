@@ -37,9 +37,11 @@ export function Dashboard() {
     // }
     setData({
       id: selector.login.id,
-      nome: selector.login.nome
+      nome: selector.login.nome,
+      perfil: selector.login.perfil,
+        email: selector.login.email,
     });
-  }, [selector.login.id, selector.login.nome]);
+  }, [selector.login.email, selector.login.id, selector.login.nome, selector.login.perfil]);
 
   return (
     <ContainerApp>
