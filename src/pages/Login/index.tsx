@@ -50,21 +50,21 @@ export function Login() {
     })
     .then((data) => {
       dispatch(adicionaLogin({
-        id: data.data.dataUser.id,
-        nome: data.data.dataUser.nome,
+        id: data.data.data_user.id,
+        nome: data.data.data_user.nome,
       }));
       history.push('/dashboard');
     })
     .catch((error) => {
       console.log(error);
     });
-    actions.setSubmitting(false);
-    actions.resetForm({
-      values: {
-        email: '',
-        senha: ''
-      }
-    });
+    // actions.setSubmitting(false);
+    // actions.resetForm({
+    //   values: {
+    //     email: '',
+    //     senha: ''
+    //   }
+    // });
   }
 
   return (

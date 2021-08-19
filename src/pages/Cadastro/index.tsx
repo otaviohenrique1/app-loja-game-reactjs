@@ -63,20 +63,20 @@ export function Cadastro() {
   const history = useHistory();
 
   async function handleSubmitForm(values: FormValues, actions: FormikHelpers<FormValues>) {
-    let data: FormValues = {
-      nome: values.nome,
-      perfil: values.perfil,
-      email: values.email,
-      senha: values.senha,
-      sexo: values.sexo,
-      data_nascimento: values.data_nascimento,
-      pais: values.pais,
-      cidade: values.cidade,
-      estado: values.estado,
-      resumo: values.resumo,
-      celular: values.celular,
-      url_personalizado: values.url_personalizado
-    };
+    // let data: FormValues = {
+    //   nome: values.nome,
+    //   perfil: values.perfil,
+    //   email: values.email,
+    //   senha: values.senha,
+    //   sexo: values.sexo,
+    //   data_nascimento: values.data_nascimento,
+    //   pais: values.pais,
+    //   cidade: values.cidade,
+    //   estado: values.estado,
+    //   resumo: values.resumo,
+    //   celular: values.celular,
+    //   url_personalizado: values.url_personalizado
+    // };
 
     await api.post('usuarios', {
       'nome': (values.nome).toString(),
@@ -91,16 +91,16 @@ export function Cadastro() {
       'pais': (values.pais).toString(),
       'cidade': (values.cidade).toString(),
       'estado': (values.estado).toString(),
-      'data_cadastro': (`${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`).toString(),
+      'data_cadastro': (new Date()).toString(),
+      // 'data_cadastro': (`${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`).toString(),
     })
     .then(() => {
       alert('Cadastro realizado com sucesso!');
-      history.push('/');
-      console.log(data);
-      actions.setSubmitting(false);
-      actions.resetForm({
-        values: InitialValues
-      });
+      // console.log(data);
+      // actions.setSubmitting(false);
+      // actions.resetForm({
+      //   values: InitialValues
+      // });
       history.push('/');
     })
     .catch((error) => {
