@@ -78,10 +78,6 @@ export function Cadastro() {
       url_personalizado: values.url_personalizado
     };
 
-    let dia = new Date(`${new Date().getDate()}`);
-    let mes = new Date(`${new Date().getMonth() + 1}`);
-    let ano = new Date(`${new Date().getFullYear()}`);
-
     await api.post('usuarios', {
       'nome': (values.nome).toString(),
       'perfil': (values.perfil).toString(),
@@ -95,22 +91,22 @@ export function Cadastro() {
       'pais': (values.pais).toString(),
       'cidade': (values.cidade).toString(),
       'estado': (values.estado).toString(),
-      'data_cadastro': (`${dia}/${mes}/${ano}`).toString(),
+      'data_cadastro': (`${new Date().getFullYear()}-${new Date().getMonth() + 1}-${new Date().getDate()}`).toString(),
     })
     .then(() => {
       alert('Cadastro realizado com sucesso!');
+      history.push('/');
+      console.log(data);
+      actions.setSubmitting(false);
+      actions.resetForm({
+        values: InitialValues
+      });
       history.push('/');
     })
     .catch((error) => {
       console.log(error);
     });
 
-    console.log(data);
-    actions.setSubmitting(false);
-    actions.resetForm({
-      values: InitialValues
-    });
-    history.push('/');
   }
 
   return (
