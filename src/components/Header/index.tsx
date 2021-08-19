@@ -77,9 +77,10 @@ export function Header(props: HeaderProps) {
               <AvatarPerfil>{props.perfil || "Perfil"}</AvatarPerfil>
             </DropdownToggle>
             <DropdownMenu right>
-              <DropdownItem>
-                Perfil
-              </DropdownItem>
+              <BotaoDropdownLink
+                to={`/perfil/${props.id}`}
+                labelButton='Perfil'
+              />
               <DropdownItem>
                 Favoritos
               </DropdownItem>
