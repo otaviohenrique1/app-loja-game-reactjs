@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { AiOutlineCopyright } from "react-icons/ai";
 
 const FooterEstilizado = styled.footer`
-  position: absolute;
+  position: relative;
   bottom: 0;
   width: 100%;
   background-color: cadetblue;
@@ -10,7 +10,7 @@ const FooterEstilizado = styled.footer`
   display: flex;
   flex-direction: row;
   align-items: center;
-
+  margin-top: 20px;
   p {
     margin-bottom: 0;
   }
