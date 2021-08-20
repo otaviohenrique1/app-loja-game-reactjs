@@ -58,7 +58,7 @@ export function Perfil() {
   }
 
   async function handleSubmitForm(values: FormValuesCadastroUsuario, actions: FormikHelpers<FormValuesCadastroUsuario>) {
-    await api.put(`usuarios/${id}`, {
+    await api.patch(`usuarios/${id}`, {
       'nome': (values.nome).toString(),
       'perfil': (values.perfil).toString(),
       'resumo': (values.resumo).toString(),
