@@ -1,54 +1,39 @@
-import { Container } from "reactstrap";
-import { Titulo } from "../../components/Titulo";
+import { Form, Formik } from "formik";
+import { Col, Row } from "reactstrap";
 import styled from "styled-components";
-import { Formik, Form, FormikHelpers } from "formik";
-import { CampoFormulario, CampoSelectFormulario, CampoTextAreaFormulario, Separador } from "../../components/Campo";
-import { Botao, BotaoLink, ContainerBotoes } from "../../components/Botao";
-import { MensagemErro } from "../../components/Mensagem";
-import { estado_lista, sexo_lista } from "../../utils/listas";
-import { useHistory } from "react-router-dom";
-import api from "../../services/api";
-import { FormValuesCadastroUsuario, InitialValuesCadastroUsuario, ValidationSchemaCadastroUsuario } from "../../utils/types";
+import { Botao } from "../../../components/Botao";
+import { CampoFormulario, CampoSelectFormulario, CampoTextAreaFormulario, Separador } from "../../../components/Campo";
+import { MensagemErro } from "../../../components/Mensagem";
+import { sexo_lista, estado_lista } from "../../../utils/listas";
+import { FormValuesCadastroUsuario } from "../../../utils/types";
 
-export function Cadastro() {
-  const history = useHistory();
+const ContainerBotoes = styled(Col)`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 20px;
+`;
 
-  async function handleSubmitForm(values: FormValuesCadastroUsuario, actions: FormikHelpers<FormValuesCadastroUsuario>) {
-    await api.post('usuarios', {
-      'nome': (values.nome).toString(),
-      'perfil': (values.perfil).toString(),
-      'resumo': (values.resumo).toString(),
-      'url_personalizado': (values.url_personalizado).toString(),
-      'sexo': (values.sexo).toString(),
-      'data_nascimento': (values.data_nascimento).toString(),
-      'email': (values.email).toString(),
-      'senha': ((values.senha).toString()),
-      'celular': (values.celular).toString(),
-      'pais': (values.pais).toString(),
-      'cidade': (values.cidade).toString(),
-      'estado': (values.estado).toString(),
-      'data_cadastro': (new Date()).toString(),
-    })
-    .then(() => {
-      alert('Cadastro realizado com sucesso!');
-      history.push('/');
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-  }
 
+interface FormularioEdicaoPerfilProps {
+  onClickCancelar?: React.MouseEventHandler<HTMLButtonElement>
+  initialValues: FormValuesCadastroUsuario;
+  validationSchema: any
+  onSubmit: any;
+}
+
+export function FormularioEdicaoPerfil(props: FormularioEdicaoPerfilProps) {
   return (
-    <ContainerCadastro>
-      <Titulo titulo='Cadastro' />
-      <Formik
-        initialValues={InitialValuesCadastroUsuario}
-        validationSchema={ValidationSchemaCadastroUsuario}
-        onSubmit={handleSubmitForm}
-      >
-        {({ errors, touched, values }) => (
-          <FormularioEstilizado>
-            <CampoFormularioEstilizado>
+    <Formik
+      initialValues={props.initialValues}
+      validationSchema={props.validationSchema}
+      onSubmit={props.onSubmit}
+    >
+      {({ errors, touched, values }) => (
+        <FormEstilizado>
+          <Row>
+            <ColEstilizado md={12}>
               <CampoFormulario
                 type="text"
                 name="nome"
@@ -65,8 +50,8 @@ export function Cadastro() {
                   />
                 )}
               />
-            </CampoFormularioEstilizado>
-            <CampoFormularioEstilizado>
+            </ColEstilizado>
+            <ColEstilizado md={12}>
               <CampoFormulario
                 type="text"
                 name="perfil"
@@ -83,8 +68,8 @@ export function Cadastro() {
                   />
                 )}
               />
-            </CampoFormularioEstilizado>
-            <CampoFormularioEstilizado>
+            </ColEstilizado>
+            <ColEstilizado md={8}>
               <CampoFormulario
                 type="email"
                 name="email"
@@ -101,8 +86,8 @@ export function Cadastro() {
                   />
                 )}
               />
-            </CampoFormularioEstilizado>
-            <CampoFormularioEstilizado>
+            </ColEstilizado>
+            <ColEstilizado md={4}>
               <CampoFormulario
                 type="password"
                 name="senha"
@@ -119,8 +104,8 @@ export function Cadastro() {
                   />
                 )}
               />
-            </CampoFormularioEstilizado>
-            <CampoFormularioEstilizado>
+            </ColEstilizado>
+            <ColEstilizado md={4}>
               <CampoSelectFormulario
                 id="sexo"
                 htmlFor="sexo"
@@ -136,8 +121,8 @@ export function Cadastro() {
                 )}
                 lista={sexo_lista}
               />
-            </CampoFormularioEstilizado>
-            <CampoFormularioEstilizado>
+            </ColEstilizado>
+            <ColEstilizado md={4}>
               <CampoFormulario
                 type="date"
                 name="data_nascimento"
@@ -154,78 +139,8 @@ export function Cadastro() {
                   />
                 )}
               />
-            </CampoFormularioEstilizado>
-            <CampoFormularioEstilizado>
-              <CampoFormulario
-                type="text"
-                name="pais"
-                id="pais"
-                htmlFor="pais"
-                label="Pais"
-                placeholder="Digite o seu pais"
-                className="form-control"
-                value={values.pais}
-                erro={(errors.pais && touched.pais) && (
-                  <MensagemErro
-                    color='danger'
-                    mensagem={errors.pais}
-                  />
-                )}
-              />
-            </CampoFormularioEstilizado>
-            <CampoFormularioEstilizado>
-              <CampoFormulario
-                type="text"
-                name="cidade"
-                id="cidade"
-                htmlFor="cidade"
-                label="Cidade"
-                placeholder="Digite o seu cidade"
-                className="form-control"
-                value={values.cidade}
-                erro={(errors.cidade && touched.cidade) && (
-                  <MensagemErro
-                    color='danger'
-                    mensagem={errors.cidade}
-                  />
-                )}
-              />
-            </CampoFormularioEstilizado>
-            <CampoFormularioEstilizado>
-              <CampoSelectFormulario
-                id="estado"
-                htmlFor="estado"
-                label="Estado"
-                placeholder="Digite o seu estado"
-                className="form-control"
-                value={values.estado}
-                erro={(errors.estado && touched.estado) && (
-                  <MensagemErro
-                    color='danger'
-                    mensagem={errors.estado}
-                  />
-                )}
-                lista={estado_lista}
-              />
-            </CampoFormularioEstilizado>
-            <CampoFormularioEstilizado>
-              <CampoTextAreaFormulario
-                name="resumo"
-                id="resumo"
-                htmlFor="resumo"
-                label="Resumo"
-                placeholder="Digite o seu resumo"
-                className="form-control"
-                value={values.resumo}
-                erro={(errors.resumo && touched.resumo) && (
-                  <MensagemErro
-                    color='danger'
-                    mensagem={errors.resumo}
-                  />
-                )}
-              />
-            </CampoFormularioEstilizado>
-            <CampoFormularioEstilizado>
+            </ColEstilizado>
+            <ColEstilizado md={4}>
               <CampoFormulario
                 type="number"
                 name="celular"
@@ -242,8 +157,78 @@ export function Cadastro() {
                   />
                 )}
               />
-            </CampoFormularioEstilizado>
-            <CampoFormularioEstilizado>
+            </ColEstilizado>
+            <ColEstilizado md={4}>
+              <CampoFormulario
+                type="text"
+                name="pais"
+                id="pais"
+                htmlFor="pais"
+                label="Pais"
+                placeholder="Digite o seu pais"
+                className="form-control"
+                value={values.pais}
+                erro={(errors.pais && touched.pais) && (
+                  <MensagemErro
+                    color='danger'
+                    mensagem={errors.pais}
+                  />
+                )}
+              />
+            </ColEstilizado>
+            <ColEstilizado md={4}>
+              <CampoFormulario
+                type="text"
+                name="cidade"
+                id="cidade"
+                htmlFor="cidade"
+                label="Cidade"
+                placeholder="Digite o seu cidade"
+                className="form-control"
+                value={values.cidade}
+                erro={(errors.cidade && touched.cidade) && (
+                  <MensagemErro
+                    color='danger'
+                    mensagem={errors.cidade}
+                  />
+                )}
+              />
+            </ColEstilizado>
+            <ColEstilizado md={4}>
+              <CampoSelectFormulario
+                id="estado"
+                htmlFor="estado"
+                label="Estado"
+                placeholder="Digite o seu estado"
+                className="form-control"
+                value={values.estado}
+                erro={(errors.estado && touched.estado) && (
+                  <MensagemErro
+                    color='danger'
+                    mensagem={errors.estado}
+                  />
+                )}
+                lista={estado_lista}
+              />
+            </ColEstilizado>
+            <ColEstilizado md={12}>
+              <CampoTextAreaFormulario
+                name="resumo"
+                id="resumo"
+                htmlFor="resumo"
+                label="Resumo"
+                placeholder="Digite o seu resumo"
+                className="form-control"
+                value={values.resumo}
+                erro={(errors.resumo && touched.resumo) && (
+                  <MensagemErro
+                    color='danger'
+                    mensagem={errors.resumo}
+                  />
+                )}
+              />
+            </ColEstilizado>
+            <ColEstilizado md={12}>
               <CampoFormulario
                 type="text"
                 name="url_personalizado"
@@ -260,62 +245,40 @@ export function Cadastro() {
                   />
                 )}
               />
-            </CampoFormularioEstilizado>
-            <Separador />
-            <ContainerBotoesEstilizado>
+            </ColEstilizado>
+            <Col md={12}>
+              <Separador />
+            </Col>
+            <ContainerBotoes md={12}>
               <Botao
                 color="primary"
                 labelButton="Salvar"
                 type="submit"
+                style={{ marginRight: 10 }}
               />
-              <BotaoEstilizado>
-                <Botao
-                  color="danger"
-                  labelButton="Limpar"
-                  type="reset"
-                />
-              </BotaoEstilizado>
-              <BotaoLink
-                color="info"
-                labelButton="Voltar"
+              <BotaoEstilizado
+                labelButton={'Cancelar'}
+                color="danger"
                 type="button"
-                rota="/"
+                onClick={props.onClickCancelar}
               />
-            </ContainerBotoesEstilizado>
-          </FormularioEstilizado>
-        )}
-      </Formik>
-    </ContainerCadastro>
+            </ContainerBotoes>
+          </Row>
+        </FormEstilizado>
+      )}
+    </Formik>
   );
 }
 
-const CampoFormularioEstilizado = styled.div`
-  margin-bottom: 20px;
+const FormEstilizado = styled(Form)`
+  margin-left: 5px;
+  margin-right: 5px;
 `;
 
-const BotaoEstilizado = styled.div`
-  margin-left: 10px;
-  margin-right: 10px;
+const BotaoEstilizado = styled(Botao)`
+  width: 100px;
 `;
 
-const FormularioEstilizado = styled(Form)`
-  width: 300px;
-`;
-
-const ContainerBotoesEstilizado = styled(ContainerBotoes)`
-  margin-top: 30px;
-`;
-
-const ContainerCadastro = styled(Container)`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 5%;
-  margin-bottom: 5%;
-  position: relative;
-  width: 400px;
-  background-color: lightblue;
-  padding: 2%;
-  border-radius: 10px;
+const ColEstilizado = styled(Col)`
+  margin-top: 4px;
 `;
