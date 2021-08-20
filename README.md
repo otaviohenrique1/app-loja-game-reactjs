@@ -96,6 +96,13 @@
   ou
   yarn add react-popper @popperjs/core
   
+## Instalar react-lottie
+  npm install --save react-lottie
+  yarn add react-lottie
+  ou
+  npm install -D @types/react-lottie
+  yarn add -D @types/react-lottie
+
 ## Opcional
   ### Instalar react-input-mask
     npm install --save react-input-mask
@@ -108,3 +115,4 @@
     npm install react-bootstrap@next bootstrap@5.0.2
     ou
     yarn add react-bootstrap@next bootstrap@5.0.2
+  
