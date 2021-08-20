@@ -6,7 +6,8 @@ import styled from "styled-components";
 import { ContainerApp } from "../../components/ContainerApp";
 import { Titulo } from "../../components/Titulo";
 import api from "../../services/api";
-import { DataPerfil, dataPerfilInitialData, FormValuesCadastroUsuario, InitialValuesCadastroUsuario, ValidationSchemaCadastroUsuario } from "../../utils/types";
+import { DataPerfil, dataPerfilInitialData, FormValuesCadastroUsuario, ValidationSchemaCadastroUsuario } from "../../utils/types";
+// import { InitialValuesCadastroUsuario } from "../../utils/types";
 import { FormularioDadosPerfil } from "./FormularioDadosPerfil";
 import { FormularioEdicaoPerfil } from "./FormularioEdicaoPerfil";
 
@@ -57,27 +58,27 @@ export function Perfil() {
   }
 
   async function handleSubmitForm(values: FormValuesCadastroUsuario, actions: FormikHelpers<FormValuesCadastroUsuario>) {
-    // await api.post('usuarios', {
-    //   'nome': (values.nome).toString(),
-    //   'perfil': (values.perfil).toString(),
-    //   'resumo': (values.resumo).toString(),
-    //   'url_personalizado': (values.url_personalizado).toString(),
-    //   'sexo': (values.sexo).toString(),
-    //   'data_nascimento': (values.data_nascimento).toString(),
-    //   'email': (values.email).toString(),
-    //   'senha': ((values.senha).toString()),
-    //   'celular': (values.celular).toString(),
-    //   'pais': (values.pais).toString(),
-    //   'cidade': (values.cidade).toString(),
-    //   'estado': (values.estado).toString(),
-    // })
-    // .then(() => {
-    //   alert('Cadastro realizado com sucesso!');
-    //   setModoEdicaoFormulario(!modoEdicaoFormulario);
-    // })
-    // .catch((error) => {
-    //   console.log(error);
-    // });
+    await api.put(`usuarios/${id}`, {
+      'nome': (values.nome).toString(),
+      'perfil': (values.perfil).toString(),
+      'resumo': (values.resumo).toString(),
+      'url_personalizado': (values.url_personalizado).toString(),
+      'sexo': (values.sexo).toString(),
+      'data_nascimento': (values.data_nascimento).toString(),
+      'email': (values.email).toString(),
+      'senha': ((values.senha).toString()),
+      'celular': (values.celular).toString(),
+      'pais': (values.pais).toString(),
+      'cidade': (values.cidade).toString(),
+      'estado': (values.estado).toString(),
+    })
+    .then(() => {
+      alert('Cadastro realizado com sucesso!');
+      setModoEdicaoFormulario(!modoEdicaoFormulario);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
     setModoEdicaoFormulario(!modoEdicaoFormulario);
   }
 
@@ -92,7 +93,20 @@ export function Perfil() {
       ) : (
         <FormularioEdicaoPerfil
           onClickCancelar={handleClickCancelar}
-          initialValues={InitialValuesCadastroUsuario}
+          data={{
+            nome: data.nome,
+            perfil: data.perfil,
+            email: data.email,
+            senha: data.senha,
+            sexo: data.sexo,
+            data_nascimento: `${data.data_nascimento}`,
+            pais: data.pais,
+            cidade: data.cidade,
+            estado: data.estado,
+            resumo: data.resumo,
+            celular: data.celular,
+            url_personalizado: data.url_personalizado,
+          }}
           validationSchema={ValidationSchemaCadastroUsuario}
           onSubmit={handleSubmitForm}
         />

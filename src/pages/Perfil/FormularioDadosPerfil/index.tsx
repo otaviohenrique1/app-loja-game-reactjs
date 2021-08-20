@@ -46,7 +46,7 @@ const ItemPerfilEstilizado = styled.div`
 
 export interface FormularioDadosPerfilProps {
   data: DataPerfil;
-  onClickEditar?: React.MouseEventHandler<HTMLButtonElement>;
+  onClickEditar: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 export function FormularioDadosPerfil(props: FormularioDadosPerfilProps) {

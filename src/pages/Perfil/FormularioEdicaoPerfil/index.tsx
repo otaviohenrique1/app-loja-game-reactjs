@@ -17,16 +17,31 @@ const ContainerBotoes = styled(Col)`
 
 
 interface FormularioEdicaoPerfilProps {
-  onClickCancelar?: React.MouseEventHandler<HTMLButtonElement>
-  initialValues: FormValuesCadastroUsuario;
+  onClickCancelar: React.MouseEventHandler<HTMLButtonElement>
+  data: FormValuesCadastroUsuario;
   validationSchema: any
   onSubmit: any;
 }
 
 export function FormularioEdicaoPerfil(props: FormularioEdicaoPerfilProps) {
+  const InitialValuesCadastroUsuario: FormValuesCadastroUsuario = {
+    nome: '' || props.data.nome,
+    perfil: '' || props.data.perfil,
+    email: '' || props.data.email,
+    senha: '' || props.data.senha,
+    sexo: '' || props.data.sexo,
+    data_nascimento: '' || props.data.data_nascimento,
+    pais: '' || props.data.pais,
+    cidade: '' || props.data.cidade,
+    estado: '' || props.data.estado,
+    resumo: '' || props.data.resumo,
+    celular: '' || props.data.celular,
+    url_personalizado: '' || props.data.url_personalizado
+  };
+  
   return (
     <Formik
-      initialValues={props.initialValues}
+      initialValues={InitialValuesCadastroUsuario}
       validationSchema={props.validationSchema}
       onSubmit={props.onSubmit}
     >
