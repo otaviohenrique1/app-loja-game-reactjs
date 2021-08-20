@@ -23,6 +23,7 @@ export function Botao(props: BotaoProps) {
     <BotaoEstilizado
       color={props.color}
       type={props.type}
+      {...props}
     >
       {props.labelButton}
     </BotaoEstilizado>
