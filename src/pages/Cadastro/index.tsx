@@ -9,6 +9,7 @@ import { estado_lista, sexo_lista } from "../../utils/listas";
 import { useHistory } from "react-router-dom";
 import api from "../../services/api";
 import { FormValuesCadastroUsuario, InitialValuesCadastroUsuario, ValidationSchemaCadastroUsuario } from "../../utils/types";
+import { formataData } from "../../utils/utils";
 
 export function Cadastro() {
   const history = useHistory();
@@ -20,14 +21,16 @@ export function Cadastro() {
       'resumo': (values.resumo).toString(),
       'url_personalizado': (values.url_personalizado).toString(),
       'sexo': (values.sexo).toString(),
-      'data_nascimento': (values.data_nascimento).toString(),
+      'data_nascimento': formataData(new Date(values.data_nascimento)),
+      // 'data_nascimento': (values.data_nascimento).toString(),
       'email': (values.email).toString(),
       'senha': ((values.senha).toString()),
       'celular': (values.celular).toString(),
       'pais': (values.pais).toString(),
       'cidade': (values.cidade).toString(),
       'estado': (values.estado).toString(),
-      'data_cadastro': (new Date()).toString(),
+      'data_cadastro': formataData(new Date()),
+      // 'data_cadastro': (new Date()).toString(),
     })
     .then(() => {
       alert('Cadastro realizado com sucesso!');
