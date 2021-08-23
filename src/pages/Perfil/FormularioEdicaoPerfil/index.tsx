@@ -6,6 +6,7 @@ import { CampoFormulario, CampoSelectFormulario, CampoTextAreaFormulario, Separa
 import { MensagemErro } from "../../../components/Mensagem";
 import { sexo_lista, estado_lista } from "../../../utils/listas";
 import { FormValuesCadastroUsuario } from "../../../utils/types";
+import { formataData2 } from "../../../utils/utils";
 
 const ContainerBotoes = styled(Col)`
   display: flex;
@@ -30,7 +31,7 @@ export function FormularioEdicaoPerfil(props: FormularioEdicaoPerfilProps) {
     email: '' || props.data.email,
     senha: '' || props.data.senha,
     sexo: '' || props.data.sexo,
-    data_nascimento: '' || props.data.data_nascimento,
+    data_nascimento: '' || formataData2(new Date(props.data.data_nascimento)),
     pais: '' || props.data.pais,
     cidade: '' || props.data.cidade,
     estado: '' || props.data.estado,
@@ -267,12 +268,12 @@ export function FormularioEdicaoPerfil(props: FormularioEdicaoPerfilProps) {
             <ContainerBotoes md={12}>
               <Botao
                 color="primary"
-                labelButton="Salvar"
+                label_button="Salvar"
                 type="submit"
                 style={{ marginRight: 10 }}
               />
               <BotaoEstilizado
-                labelButton={'Cancelar'}
+                label_button={'Cancelar'}
                 color="danger"
                 type="button"
                 onClick={props.onClickCancelar}

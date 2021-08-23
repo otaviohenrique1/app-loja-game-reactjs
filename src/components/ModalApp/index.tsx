@@ -19,7 +19,7 @@ export function ModalApp(props: ModalAppProps) {
         <Botao
           color="info"
           type="button"
-          labelButton="Fechar"
+          label_button="Fechar"
         />
       </ModalFooter>
     </Modal>

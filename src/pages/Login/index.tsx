@@ -140,19 +140,19 @@ export function Login() {
             <ContainerBotoesEstilizado>
               <Botao
                 color="primary"
-                labelButton="Entrar"
+                label_button="Entrar"
                 type="submit"
               />
               <BotaoEstilizado>
                 <Botao
                   color="danger"
-                  labelButton="Limpar"
+                  label_button="Limpar"
                   type="reset"
                 />
               </BotaoEstilizado>
               <BotaoLink
                 color="success"
-                labelButton="Novo"
+                label_button="Novo"
                 type="button"
                 rota="/cadastro/usuario"
               />

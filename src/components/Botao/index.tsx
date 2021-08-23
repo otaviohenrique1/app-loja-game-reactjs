@@ -9,7 +9,7 @@ type ColorTypesBotao = 'primary' | 'secondary' | 'success' |
 type TypesBotao = 'submit' | 'reset' | 'button' | undefined;
 
 interface BotaoProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  labelButton?: string;
+  label_button?: string;
   color?: ColorTypesBotao;
   type?: TypesBotao;
 }
@@ -25,7 +25,7 @@ export function Botao(props: BotaoProps) {
       type={props.type}
       {...props}
     >
-      {props.labelButton}
+      {props.label_button}
     </BotaoEstilizado>
   );
 }
@@ -41,7 +41,7 @@ export function BotaoLink(props: BotaoLinkProps) {
         color={props.color}
         type={props.type}
       >
-        {props.labelButton}
+        {props.label_button}
       </BotaoEstilizado>
     </Link>
   );

@@ -130,7 +130,7 @@ export function FormularioDadosPerfil(props: FormularioDadosPerfilProps) {
       </Col>
       <ContainerBotoes md={12}>
         <BotaoEstilizado
-          labelButton={'Editar'}
+          label_button={'Editar'}
           color="success"
           type="button"
           onClick={props.onClickEditar}

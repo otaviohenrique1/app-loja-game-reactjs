@@ -6,11 +6,25 @@ export function MensagemErro(mensagem: string) {
   return mensagem;
 }
 
-export function formataData(data: Date): String {
+/**
+ * Formata data -> dia/mes/ano
+ */
+export function formataData(data: Date): string {
   let dia = data.getDate().toString().padStart(2, '0');
   let mes = (data.getMonth() + 1).toString().padStart(2, '0');
   let ano = data.getFullYear();
   let dataFormatada = `${dia}/${mes}/${ano}`;
+  return dataFormatada;
+}
+
+/**
+ * Formata data -> ano-mes-dia
+ */
+export function formataData2(data: Date): string {
+  let dia = data.getDate().toString().padStart(2, '0');
+  let mes = (data.getMonth() + 1).toString().padStart(2, '0');
+  let ano = data.getFullYear();
+  let dataFormatada = `${ano}-${mes}-${dia}`;
   return dataFormatada;
 }
 
@@ -29,7 +43,7 @@ export function dataFormatada(data: Date) : string{
   return dia+"/"+mes+"/"+ano;
 }
 
-export function formataData2(data: Date): String {
+export function formataData3(data: Date): string {
   let dia = data.getDate();
   let ano = data.getFullYear();
   let mes = data.getMonth() + 1
