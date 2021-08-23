@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Botao } from "../../../components/Botao";
 import { Separador } from "../../../components/Campo";
 import { DataPerfil } from "../../../utils/types";
+import { formataData } from "../../../utils/utils";
 
 interface ItemPerfilProps {
   itemTitulo: any;
@@ -85,7 +86,7 @@ export function FormularioDadosPerfil(props: FormularioDadosPerfilProps) {
       <Col md={6}>
         <ItemPerfil
           itemTitulo={'Data de nascimento'}
-          itemConteudo={`${props.data.data_nascimento}`}
+          itemConteudo={`${formataData(props.data.data_nascimento)}`}
         />
       </Col>
       <Col md={4}>
@@ -121,7 +122,7 @@ export function FormularioDadosPerfil(props: FormularioDadosPerfilProps) {
       <Col md={12}>
         <ItemPerfil
           itemTitulo={'Data de cadastro'}
-          itemConteudo={`${props.data.data_cadastro}`}
+          itemConteudo={`${formataData(props.data.data_cadastro)}`}
         />
       </Col>
       <Col md={12}>

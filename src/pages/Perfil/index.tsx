@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { ContainerApp } from "../../components/ContainerApp";
 import { Titulo } from "../../components/Titulo";
 import api from "../../services/api";
-import { DataPerfil, dataPerfilInitialData, FormValuesCadastroUsuario, ValidationSchemaCadastroUsuario } from "../../utils/types";
+import { DataPerfil2, dataPerfilInitialData2, FormValuesCadastroUsuario, ValidationSchemaCadastroUsuario } from "../../utils/types";
 // import { InitialValuesCadastroUsuario } from "../../utils/types";
 import { FormularioDadosPerfil } from "./FormularioDadosPerfil";
 import { FormularioEdicaoPerfil } from "./FormularioEdicaoPerfil";
@@ -20,7 +20,7 @@ interface ParamsDataProps {
 }
 
 export function Perfil() {
-  const [data, setData] = useState<DataPerfil>(dataPerfilInitialData);
+  const [data, setData] = useState<DataPerfil2>(dataPerfilInitialData2);
   const [modoEdicaoFormulario, setModoEdicaoFormulario] = useState<boolean>(true);
   const { id } = useParams<ParamsDataProps>();
 
@@ -87,7 +87,21 @@ export function Perfil() {
       <TituloEstilizado titulo={'Perfil'}/>
       {(modoEdicaoFormulario) ? (
         <FormularioDadosPerfil
-          data={data}
+          data={{
+            nome: data.nome,
+            perfil: data.perfil,
+            email: data.email,
+            senha: data.senha,
+            sexo: data.sexo,
+            data_nascimento: new Date(data.data_nascimento),
+            pais: data.pais,
+            cidade: data.cidade,
+            estado: data.estado,
+            resumo: data.resumo,
+            celular: data.celular,
+            url_personalizado: data.url_personalizado,
+            data_cadastro: new Date(data.data_cadastro),
+          }}
           onClickEditar={handleClickEditar}
         />
       ) : (
@@ -99,7 +113,7 @@ export function Perfil() {
             email: data.email,
             senha: data.senha,
             sexo: data.sexo,
-            data_nascimento: `${data.data_nascimento}`,
+            data_nascimento: data.data_nascimento,
             pais: data.pais,
             cidade: data.cidade,
             estado: data.estado,

@@ -2,7 +2,7 @@ import { Form, Formik } from "formik";
 import { ContainerApp } from "../../components/ContainerApp";
 import { Titulo } from "../../components/Titulo";
 import * as Yup from "yup";
-import { MensagemErroCampoVazio } from "../../utils/utils";
+import { formataData, MensagemErroCampoVazio } from "../../utils/utils";
 import { CampoFormulario } from "../../components/Campo";
 import { MensagemErro } from "../../components/Mensagem";
 import { Button, Col, Row } from "reactstrap";
@@ -29,13 +29,13 @@ export function TesteCampoData() {
     });
   }
   
-  function formataData(data: Date): String {
-    let dia = data.getDate();
-    let mes = data.getMonth() + 1;
-    let ano = data.getFullYear();
-    let dataFormatada = `${ano}-${mes}-${dia}`;
-    return dataFormatada;
-  }
+  // function formataData(data: Date): String {
+  //   let dia = data.getDate();
+  //   let mes = data.getMonth() + 1;
+  //   let ano = data.getFullYear();
+  //   let dataFormatada = `${ano}-${mes}-${dia}`;
+  //   return dataFormatada;
+  // }
 
   return (
     <ContainerApp>
@@ -45,12 +45,19 @@ export function TesteCampoData() {
         </Col>
         <Col md={12} style={{ margin: 50, padding: 10,}} >
           <p style={{ margin: 0, textAlign: 'center' }}>
-            {`Data não formatada: ${dataTexto.data}`}
+            {`Dia -> [${new Date(dataTexto.data).getDate()}]`}
           </p>
-        </Col>
-        <Col md={12} style={{ margin: 50, padding: 10,}} >
           <p style={{ margin: 0, textAlign: 'center' }}>
-            {`Data formatada: ${formataData(new Date(dataTexto.data))}`}
+            {`Mes -> [${new Date(dataTexto.data).getMonth() + 1}]`}
+          </p>
+          <p style={{ margin: 0, textAlign: 'center' }}>
+            {`Ano -> [${new Date(dataTexto.data).getFullYear()}]`}
+          </p>
+          <p style={{ margin: 0, textAlign: 'center' }}>
+            {`Data não formatada: ${(dataTexto.data) ? dataTexto.data : '[Data não formatada]'}`}
+          </p>
+          <p style={{ margin: 0, textAlign: 'center' }}>
+            {`Data formatada: ${(dataTexto.data) ? (formataData(new Date(dataTexto.data))) : '[Data formatada]'}`}
           </p>
         </Col>
         <Col md={12}>
@@ -73,27 +80,13 @@ export function TesteCampoData() {
                       className="form-control"
                       value={values.data}
                       erro={(errors.data && touched.data) && (
-                        <MensagemErro
-                          color='danger'
-                          mensagem={errors.data}
-                        />
+                        <MensagemErro color='danger' mensagem={errors.data}/>
                       )}
                     />
                   </Col>
                   <Col md={12} style={{ marginTop: 50 }}>
-                    <Button
-                      color="primary"
-                      type="submit"
-                      style={{ marginRight: 10 }}
-                    >
-                      Salvar
-                    </Button>
-                    <Button
-                      color="danger"
-                      type="reset"
-                    >
-                      Limpar
-                    </Button>
+                    <Button color="primary" type="submit" style={{ marginRight: 10 }}>Salvar</Button>
+                    <Button color="danger" type="reset">Limpar</Button>
                   </Col>
                 </Row>
               </Form>
