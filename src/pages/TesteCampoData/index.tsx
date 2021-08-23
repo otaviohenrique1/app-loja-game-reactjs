@@ -7,14 +7,13 @@ import { CampoFormulario } from "../../components/Campo";
 import { MensagemErro } from "../../components/Mensagem";
 import { Button, Col, Row } from "reactstrap";
 import { useState } from "react";
-import { dataPadrao1 } from "../../utils/types";
 
 interface FormValuesCampoData {
-  data: Date;
+  data: string;
 }
 
 const initialValuesCampoData: FormValuesCampoData = {
-  data: new Date(dataPadrao1),
+  data: ''
 };
 
 const validationSchema = Yup.object().shape({
@@ -51,7 +50,7 @@ export function TesteCampoData() {
         </Col>
         <Col md={12} style={{ margin: 50, padding: 10,}} >
           <p style={{ margin: 0, textAlign: 'center' }}>
-            {`Data formatada: ${formataData(dataTexto.data)}`}
+            {`Data formatada: ${formataData(new Date(dataTexto.data))}`}
           </p>
         </Col>
         <Col md={12}>
