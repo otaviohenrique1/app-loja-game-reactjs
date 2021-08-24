@@ -58,7 +58,7 @@ export function Perfil() {
   }
 
   async function handleSubmitForm(values: FormValuesCadastroUsuario, actions: FormikHelpers<FormValuesCadastroUsuario>) {
-    await api.patch(`usuarios/${id}`, {
+    await api.put(`usuarios/${id}`, {
       'nome': (values.nome).toString(),
       'perfil': (values.perfil).toString(),
       'resumo': (values.resumo).toString(),
@@ -80,6 +80,31 @@ export function Perfil() {
       console.log(error);
     });
     setModoEdicaoFormulario(!modoEdicaoFormulario);
+
+    /*
+    await api.put(`usuarios/${id}`, {
+      'nome': (values.nome).toString(),
+      'perfil': (values.perfil).toString(),
+      'resumo': (values.resumo).toString(),
+      'url_personalizado': (values.url_personalizado).toString(),
+      'sexo': (values.sexo).toString(),
+      'data_nascimento': (values.data_nascimento).toString(),
+      'email': (values.email).toString(),
+      'senha': ((values.senha).toString()),
+      'celular': (values.celular).toString(),
+      'pais': (values.pais).toString(),
+      'cidade': (values.cidade).toString(),
+      'estado': (values.estado).toString(),
+    })
+    .then(() => {
+      alert('Cadastro realizado com sucesso!');
+      setModoEdicaoFormulario(!modoEdicaoFormulario);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+    setModoEdicaoFormulario(!modoEdicaoFormulario);
+    */
   }
 
   return (

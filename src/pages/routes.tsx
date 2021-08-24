@@ -5,7 +5,7 @@ import { Dashboard } from './Dashboard';
 import { Login } from './Login';
 import { Pagina404 } from './Pagina404';
 import { Perfil } from './Perfil';
-import { TesteCampoData } from './TesteCampoData';
+import { TesteCampoData } from '../teste_components/TesteCampoData';
 
 export default function Routes() {
   return (
