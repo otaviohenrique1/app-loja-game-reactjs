@@ -2,7 +2,8 @@ import styled from "styled-components";
 import { AiOutlineCopyright } from "react-icons/ai";
 
 const FooterEstilizado = styled.footer`
-  position: relative;
+  position: fixed;
+  /* position: relative; */
   /* position: absolute; */
   bottom: 0;
   width: 100%;

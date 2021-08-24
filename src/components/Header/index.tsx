@@ -51,15 +51,13 @@ export function Header(props: HeaderProps) {
             </DropdownToggle>
             <DropdownMenu right>
               <DropdownItem>
-                Option 1
-              </DropdownItem>
-              <DropdownItem>
-                Option 2
+                Nova categoria
               </DropdownItem>
               <DropdownItem divider />
-              <DropdownItem>
-                Todas as categorias
-              </DropdownItem>
+              <BotaoDropdownLink
+                to='/categorias'
+                labelButton='Todas as categorias'
+              />
             </DropdownMenu>
           </UncontrolledDropdown>
         </Nav>
