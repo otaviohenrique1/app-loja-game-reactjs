@@ -40,6 +40,7 @@ export function BotaoLink(props: BotaoLinkProps) {
       <BotaoEstilizado
         color={props.color}
         type={props.type}
+        {...props}
       >
         {props.label_button}
       </BotaoEstilizado>

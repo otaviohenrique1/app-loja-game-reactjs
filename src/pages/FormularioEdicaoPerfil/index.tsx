@@ -61,13 +61,30 @@ export function FormularioEdicaoPerfil() {
   }, [id]);
 
   async function handleSubmitForm(values: FormValuesCadastroUsuario, actions: FormikHelpers<FormValuesCadastroUsuario>) {
+    // let data1: FormValuesCadastroUsuario = {
+    //   nome: (values.nome).toString(),
+    //   perfil: (values.perfil).toString(),
+    //   resumo: (values.resumo).toString(),
+    //   url_personalizado: (values.url_personalizado).toString(),
+    //   sexo: (values.sexo).toString(),
+    //   data_nascimento: formataData2(new Date(values.data_nascimento)),
+    //   email: (values.email).toString(),
+    //   senha: ((values.senha).toString()),
+    //   celular: (values.celular).toString(),
+    //   pais: (values.pais).toString(),
+    //   cidade: (values.cidade).toString(),
+    //   estado: (values.estado).toString()
+    // };
+
+    // console.log(data1);
+
     await api.put(`usuarios/${id}`, {
       'nome': (values.nome).toString(),
       'perfil': (values.perfil).toString(),
       'resumo': (values.resumo).toString(),
       'url_personalizado': (values.url_personalizado).toString(),
       'sexo': (values.sexo).toString(),
-      'data_nascimento': (values.data_nascimento).toString(),
+      'data_nascimento': formataData2(new Date(values.data_nascimento)),
       'email': (values.email).toString(),
       'senha': ((values.senha).toString()),
       'celular': (values.celular).toString(),
@@ -76,7 +93,7 @@ export function FormularioEdicaoPerfil() {
       'estado': (values.estado).toString(),
     })
     .then(() => {
-      alert('Cadastro realizado com sucesso!');
+      alert('Cadastro alterado com sucesso!');
       history.push(`/perfil/${id}`);
     })
     .catch((error) => {
@@ -130,6 +147,7 @@ export function FormularioEdicaoPerfil() {
         initialValues={InitialValuesCadastroUsuario}
         validationSchema={ValidationSchemaCadastroUsuario}
         onSubmit={handleSubmitForm}
+        enableReinitialize={true} // Para o formulario de edicao dos dados do perfil
       >
         {({ errors, touched, values }) => (
           <FormEstilizado>

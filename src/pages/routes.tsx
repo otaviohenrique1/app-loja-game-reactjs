@@ -17,8 +17,8 @@ export default function Routes() {
         <Route exact path='/cadastro/usuario' component={Cadastro} />
         <Route exact path='/dashboard' component={Dashboard} />
         {/* <Route exact path='/perfil/:id' component={Perfil} /> */}
-        <Route exact path='/perfil/:id' component={FormularioEdicaoPerfil} />
-        <Route exact path='/perfil/edicao/:id' component={FormularioDadosPerfil} />
+        <Route exact path='/perfil/:id' component={FormularioDadosPerfil} />
+        <Route exact path='/perfil/edicao/:id' component={FormularioEdicaoPerfil} />
         {/* <Route exact path='/teste_campo_data' component={TesteCampoData} /> */}
         <Route path='*' component={Pagina404}/>
       </Switch>
