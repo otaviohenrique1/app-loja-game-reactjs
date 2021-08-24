@@ -1,0 +1,116 @@
+import { useRef, useState } from 'react';
+import { Carousel, CarouselItem, CarouselControl, CarouselIndicators,  CarouselCaption } from "reactstrap";
+import ReactElasticCarousel from "react-elastic-carousel";
+import { items_lista_games } from '../../utils/lista_games';
+import styled from 'styled-components';
+
+interface CarouselAppItemProps {
+  src: string;
+  alt: string;
+}
+
+interface CarouselAppProps {
+  data: CarouselAppItemProps[];
+}
+
+const CarouselEstilizado = styled(ReactElasticCarousel)`
+  div.rec.rec-carousel {
+    width: 400px;
+    height: 170px !important;
+  }
+
+  div.rec.rec-carousel img {
+    height: 160px !important;
+  }
+`;
+
+export function CarouselApp(props: CarouselAppProps) {
+  return (
+    <CarouselEstilizado
+      itemsToShow={1}
+      isRTL={false}
+    >
+      {props.data.map((item, index) => (
+        <div key={index}>
+          <img src={item.src} alt={item.alt} />
+        </div>
+      ))}
+    </CarouselEstilizado>
+  );
+}
+
+export function CarouselApp2() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [animating, setAnimating] = useState(false);
+
+  const next = () => {
+    if (animating) return;
+    const nextIndex = activeIndex === items_lista_games.length - 1 ? 0 : activeIndex + 1;
+    setActiveIndex(nextIndex);
+  }
+
+  const previous = () => {
+    if (animating) return;
+    const nextIndex = activeIndex === 0 ? items_lista_games.length - 1 : activeIndex - 1;
+    setActiveIndex(nextIndex);
+  }
+
+  const goToIndex = (newIndex: number) => {
+    if (animating) return;
+    setActiveIndex(newIndex);
+  }
+
+  return (
+    <Carousel
+      activeIndex={activeIndex}
+      next={next}
+      previous={previous}
+    >
+      <CarouselIndicators items={items_lista_games} activeIndex={activeIndex} onClickHandler={goToIndex} />
+      {items_lista_games.map((item) => {
+        return (
+          <CarouselItem
+            onExiting={() => setAnimating(true)}
+            onExited={() => setAnimating(false)}
+            key={item.src}
+          >
+            <img src={item.src} alt={item.alt} />
+            <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
+          </CarouselItem>
+        );
+      })}
+      <CarouselControl direction="prev" directionText="Previous" onClickHandler={previous} />
+      <CarouselControl direction="next" directionText="Next" onClickHandler={next} />
+    </Carousel>
+  );
+}
+
+export function CarouselApp3() {
+  const carouselRef = useRef<any>(null);
+
+  return (
+    <ReactElasticCarousel
+      itemsToShow={1}
+      isRTL={false}
+      
+      ref={carouselRef}
+      onPrevStart={(currentItem, nextItem) => {
+        if (currentItem.index === nextItem.index) {
+          carouselRef.current.goTo(items_lista_games.length);
+        }
+      }}
+      onNextStart={(currentItem, nextItem) => {
+        if (currentItem.index === nextItem.index) {
+          carouselRef.current.goTo(0);
+        }
+      }}
+      disableArrowsOnEnd={false}
+    >
+      {items_lista_games.map((item, index) => (
+        <div key={index}>
+          <img src={item.src} alt={item.alt} />
+        </div>
+      ))}
+    </ReactElasticCarousel>
+  );
+}

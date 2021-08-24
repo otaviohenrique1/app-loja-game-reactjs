@@ -79,6 +79,7 @@ export function FormularioEdicaoPerfil() {
     // console.log(data1);
 
     await api.put(`usuarios/${id}`, {
+      'id': id,
       'nome': (values.nome).toString(),
       'perfil': (values.perfil).toString(),
       'resumo': (values.resumo).toString(),
@@ -99,6 +100,31 @@ export function FormularioEdicaoPerfil() {
     .catch((error) => {
       console.log(error);
     });
+
+    /*
+    await api.put(`usuarios/edicao/${id}`, {
+      'id': id,
+      'nome': (values.nome).toString(),
+      'perfil': (values.perfil).toString(),
+      'resumo': (values.resumo).toString(),
+      'url_personalizado': (values.url_personalizado).toString(),
+      'sexo': (values.sexo).toString(),
+      'data_nascimento': formataData2(new Date(values.data_nascimento)),
+      'email': (values.email).toString(),
+      'senha': ((values.senha).toString()),
+      'celular': (values.celular).toString(),
+      'pais': (values.pais).toString(),
+      'cidade': (values.cidade).toString(),
+      'estado': (values.estado).toString(),
+    })
+    .then(() => {
+      alert('Cadastro alterado com sucesso!');
+      history.push(`/perfil/${id}`);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+    */
 
     /*
     await api.put(`usuarios/${id}`, {

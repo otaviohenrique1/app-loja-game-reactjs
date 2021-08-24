@@ -3,10 +3,12 @@ import { AiOutlineCopyright } from "react-icons/ai";
 
 const FooterEstilizado = styled.footer`
   position: relative;
+  /* position: absolute; */
   bottom: 0;
   width: 100%;
   background-color: cadetblue;
-  padding: 10px 20px;
+  padding: 5px 20px;
+  /* padding: 10px 20px; */
   display: flex;
   flex-direction: row;
   align-items: center;
