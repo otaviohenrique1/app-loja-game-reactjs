@@ -16,7 +16,6 @@ const ContainerBotoes = styled(Col)`
   margin-top: 20px;
 `;
 
-
 interface FormularioEdicaoPerfilProps {
   onClickCancelar: React.MouseEventHandler<HTMLButtonElement>
   data: FormValuesCadastroUsuario;

@@ -2,10 +2,12 @@ import React from 'react';
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { Cadastro } from './Cadastro';
 import { Dashboard } from './Dashboard';
+import { FormularioEdicaoPerfil } from "./FormularioEdicaoPerfil";
+import { FormularioDadosPerfil } from "./FormularioDadosPerfil";
 import { Login } from './Login';
 import { Pagina404 } from './Pagina404';
-import { Perfil } from './Perfil';
-import { TesteCampoData } from '../teste_components/TesteCampoData';
+// import { Perfil } from './Perfil';
+// import { TesteCampoData } from '../teste_components/TesteCampoData';
 
 export default function Routes() {
   return (
@@ -14,8 +16,10 @@ export default function Routes() {
         <Route exact path='/' component={Login} />
         <Route exact path='/cadastro/usuario' component={Cadastro} />
         <Route exact path='/dashboard' component={Dashboard} />
-        <Route exact path='/perfil/:id' component={Perfil} />
-        <Route exact path='/teste_campo_data' component={TesteCampoData} />
+        {/* <Route exact path='/perfil/:id' component={Perfil} /> */}
+        <Route exact path='/perfil/:id' component={FormularioEdicaoPerfil} />
+        <Route exact path='/perfil/edicao/:id' component={FormularioDadosPerfil} />
+        {/* <Route exact path='/teste_campo_data' component={TesteCampoData} /> */}
         <Route path='*' component={Pagina404}/>
       </Switch>
     </BrowserRouter>
