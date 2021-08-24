@@ -2,10 +2,10 @@ import { ContainerApp } from "../../components/ContainerApp";
 import { Titulo } from "../../components/Titulo";
 
 
-export function FormularioDadosPerfil() {
+export function FormularioEdicaoPerfil() {
   return (
     <ContainerApp>
-      <Titulo titulo={'FormularioDadosPerfil'}/>
+      <Titulo titulo={'FormularioEdicaoPerfil'}/>
     </ContainerApp>
   );
 }
