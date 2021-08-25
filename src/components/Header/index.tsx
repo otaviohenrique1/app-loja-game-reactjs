@@ -50,9 +50,10 @@ export function Header(props: HeaderProps) {
               Categorias
             </DropdownToggle>
             <DropdownMenu right>
-              <DropdownItem>
-                Nova categoria
-              </DropdownItem>
+              <BotaoDropdownLink
+                to='/cadastro/categorias'
+                labelButton='Nova categoria'
+              />
               <DropdownItem divider />
               <BotaoDropdownLink
                 to='/categorias'
