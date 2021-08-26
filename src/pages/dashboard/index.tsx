@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../app/store";
-import { CarouselApp } from "../../components/CarouselApp";
+import { CarouselDestaques, CarouselPromocoes } from "../../components/CarouselApp";
 import { ContainerApp } from "../../components/ContainerApp";
 import { Titulo } from "../../components/Titulo";
 import { items_lista_games } from "../../utils/lista_games";
@@ -25,9 +25,9 @@ export function Dashboard() {
   return (
     <ContainerApp>
       <Titulo titulo={`Bem vindo ${data.nome || '[nome]'}`} />
-      <CarouselApp
-        data={items_lista_games}
-      />
+      <CarouselDestaques data={items_lista_games} />
+      <CarouselPromocoes />
     </ContainerApp>
   );
 }
+

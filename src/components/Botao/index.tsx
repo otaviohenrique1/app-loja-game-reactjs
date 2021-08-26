@@ -1,6 +1,6 @@
-import { ButtonHTMLAttributes, MouseEventHandler } from "react";
+import { ButtonHTMLAttributes, LiHTMLAttributes, MouseEventHandler } from "react";
 import { Link } from "react-router-dom";
-import { Button, DropdownItem } from "reactstrap";
+import { Button, DropdownItem, NavbarText, NavItem } from "reactstrap";
 import styled from "styled-components";
 
 type ColorTypesBotao = 'primary' | 'secondary' | 'success' |
@@ -48,6 +48,23 @@ export function BotaoLink(props: BotaoLinkProps) {
   );
 }
 
+interface NavItemLinkProps extends LiHTMLAttributes<HTMLLIElement> {
+  to: any;
+  label_button: string;
+}
+
+export function NavItemLink(props: NavItemLinkProps) {
+  return (
+    <NavItem {...props}>
+      <Link
+        to={props.to}
+      >
+        <NavbarText>{props.label_button}</NavbarText>
+      </Link>
+    </NavItem>
+  );
+}
+
 export const ContainerBotoes = styled.div`
   display: flex;
   flex-direction: row;
@@ -58,7 +75,7 @@ export const ContainerBotoes = styled.div`
 
 interface BotaoDropdownLinkProps {
   to: any;
-  labelButton: string;
+  label_button: string;
   onClick?: MouseEventHandler<HTMLAnchorElement>
 }
 
@@ -69,7 +86,7 @@ export function BotaoDropdownLink(props: BotaoDropdownLinkProps) {
       onClick={props.onClick}
       style={{ textDecoration: 'none' }}
     >
-      <DropdownItem>{props.labelButton}</DropdownItem>
+      <DropdownItem>{props.label_button}</DropdownItem>
     </Link>
   );
 }

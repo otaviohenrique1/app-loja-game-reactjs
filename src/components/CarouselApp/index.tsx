@@ -1,8 +1,11 @@
 import { useRef, useState } from 'react';
-import { Carousel, CarouselItem, CarouselControl, CarouselIndicators,  CarouselCaption } from "reactstrap";
+import { Carousel, CarouselItem, CarouselControl, CarouselIndicators,  CarouselCaption, Row, Col } from "reactstrap";
 import ReactElasticCarousel from "react-elastic-carousel";
 import { items_lista_games } from '../../utils/lista_games';
 import styled from 'styled-components';
+import { SubTitulo } from '../Titulo';
+import { Botao } from '../Botao';
+import { ItemCard } from '../Item';
 
 interface CarouselAppItemProps {
   src: string;
@@ -15,7 +18,8 @@ interface CarouselAppProps {
 
 const CarouselEstilizado = styled(ReactElasticCarousel)`
   div.rec.rec-carousel {
-    width: 400px;
+    /* width: 400px; */
+    width: 100%;
     height: 170px !important;
   }
 
@@ -24,18 +28,84 @@ const CarouselEstilizado = styled(ReactElasticCarousel)`
   }
 `;
 
-export function CarouselApp(props: CarouselAppProps) {
+export function CarouselDestaques(props: CarouselAppProps) {
   return (
-    <CarouselEstilizado
-      itemsToShow={1}
-      isRTL={false}
-    >
-      {props.data.map((item, index) => (
-        <div key={index}>
-          <img src={item.src} alt={item.alt} />
-        </div>
-      ))}
-    </CarouselEstilizado>
+    <Row style={{ width: '100%' }}>
+      <Col md={12}>
+        <SubTitulo titulo="Destaques" />
+      </Col>
+      <Col md={12}>
+        <CarouselEstilizado
+          itemsToShow={3}
+          isRTL={false}
+        >
+          {props.data.map((item, index) => (
+            <div key={index}>
+              <img src={item.src} alt={item.alt} />
+            </div>
+          ))}
+        </CarouselEstilizado>
+      </Col>
+      <Col md={12} style={{
+        textAlign: 'right'
+      }}>
+        <Botao
+          color='info'
+          label_button='Veja mais'
+          style={{ width: '100px' }}
+        />
+      </Col>
+    </Row>
+  );
+}
+
+export function CarouselPromocoes() {
+  return (
+    <Row style={{ marginTop: '50px', width: '100%' }}>
+      <Col md={12}>
+        <SubTitulo titulo='Promoções' />
+      </Col>
+      <Col md={12}>
+        <Row>
+          <Col md={4}>
+            <ItemCard
+              src={items_lista_games[0].src}
+              alt={items_lista_games[0].alt}
+              nome={items_lista_games[0].nome}
+              preco={items_lista_games[0].preco}
+              descricao={items_lista_games[0].descricao}
+            />
+          </Col>
+          <Col md={4}>
+            <ItemCard
+              src={items_lista_games[1].src}
+              alt={items_lista_games[1].alt}
+              nome={items_lista_games[1].nome}
+              preco={items_lista_games[1].preco}
+              descricao={items_lista_games[1].descricao}
+            />
+          </Col>
+          <Col md={4}>
+            <ItemCard
+              src={items_lista_games[2].src}
+              alt={items_lista_games[2].alt}
+              nome={items_lista_games[2].nome}
+              preco={items_lista_games[2].preco}
+              descricao={items_lista_games[2].descricao}
+            />
+          </Col>
+        </Row>
+      </Col>
+      <Col md={12} style={{
+      textAlign: 'right', marginTop: '20px'
+      }}>
+        <Botao
+          color='info'
+          label_button='Veja mais'
+          style={{ width: '100px' }}
+        />
+      </Col>
+    </Row>
   );
 }
 
