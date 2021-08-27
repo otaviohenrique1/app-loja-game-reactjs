@@ -5,7 +5,7 @@ import { items_lista_games } from '../../utils/lista_games';
 import styled from 'styled-components';
 import { SubTitulo } from '../Titulo';
 import { Botao } from '../Botao';
-import { ItemCard } from '../Item';
+import { ItemCardPromocao } from '../Item';
 
 interface CarouselAppItemProps {
   src: string;
@@ -68,30 +68,33 @@ export function CarouselPromocoes() {
       <Col md={12}>
         <Row>
           <Col md={4}>
-            <ItemCard
+            <ItemCardPromocao
               src={items_lista_games[0].src}
               alt={items_lista_games[0].alt}
               nome={items_lista_games[0].nome}
               preco={items_lista_games[0].preco}
               descricao={items_lista_games[0].descricao}
+              desconto={items_lista_games[0].desconto}
             />
           </Col>
           <Col md={4}>
-            <ItemCard
+            <ItemCardPromocao
               src={items_lista_games[1].src}
               alt={items_lista_games[1].alt}
               nome={items_lista_games[1].nome}
               preco={items_lista_games[1].preco}
               descricao={items_lista_games[1].descricao}
+              desconto={items_lista_games[1].desconto}
             />
           </Col>
           <Col md={4}>
-            <ItemCard
+            <ItemCardPromocao
               src={items_lista_games[2].src}
               alt={items_lista_games[2].alt}
               nome={items_lista_games[2].nome}
               preco={items_lista_games[2].preco}
               descricao={items_lista_games[2].descricao}
+              desconto={items_lista_games[2].desconto}
             />
           </Col>
         </Row>

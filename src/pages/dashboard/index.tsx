@@ -27,6 +27,12 @@ export function Dashboard() {
       <Titulo titulo={`Bem vindo ${data.nome || '[nome]'}`} />
       <CarouselDestaques data={items_lista_games} />
       <CarouselPromocoes />
+      [recomendações]<br />
+      [novidades]<br />
+      [mais vendidos]<br />
+      [atualizações]<br />
+      [antecipados]<br />
+      [proximos lançamentos]<br />
     </ContainerApp>
   );
 }
