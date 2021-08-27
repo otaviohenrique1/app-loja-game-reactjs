@@ -33,12 +33,27 @@ export function GamePage() {
   const [data, setData] = useState<DataTypes>(initialValuesData);
   
   useEffect(() => {
-    let itemBuscado = items_lista_games.filter((item) => {});
-  }, []);
+    let itemBuscado = items_lista_games.find((item) => {
+      return item.id === parseInt(id);
+    });
+    if (itemBuscado) {
+      setData({
+        nome: itemBuscado.nome,
+        descricao: itemBuscado.descricao,
+        preco: itemBuscado.preco,
+        desconto: itemBuscado.desconto,
+        src: itemBuscado.src,
+        alt: itemBuscado.alt
+      });
+    } else {
+      return;
+    }
+  }, [id]);
 
   return (
     <ContainerApp>
       <TituloEstilizado titulo={'Game Page'}/>
+      <h2>{data.nome}</h2>
     </ContainerApp>
   );
 }

@@ -7,6 +7,7 @@ import tribes_of_midgard from "../assets/teste_carousel_imagens/tribes_of_midgar
 
 export const items_lista_games = [
   {
+    id: 1,
     src: destiny2,
     alt: 'Slide 1',
     caption: 'Slide 1',
@@ -16,6 +17,7 @@ export const items_lista_games = [
     desconto: 50,
   },
   {
+    id: 2,
     src: doom_eternal,
     alt: 'Slide 2',
     caption: 'Slide 2',
@@ -25,6 +27,7 @@ export const items_lista_games = [
     desconto: 25,
   },
   {
+    id: 3,
     src: fallout4,
     alt: 'Slide 3',
     caption: 'Slide 3',
@@ -34,6 +37,7 @@ export const items_lista_games = [
     desconto: 75,
   },
   {
+    id: 4,
     src: gta5,
     alt: 'Slide 4',
     caption: 'Slide 4',
@@ -43,6 +47,7 @@ export const items_lista_games = [
     desconto: 88,
   },
   {
+    id: 5,
     src: the_witcher3,
     alt: 'Slide 5',
     caption: 'Slide 5',
@@ -52,6 +57,7 @@ export const items_lista_games = [
     desconto: 66,
   },
   {
+    id: 6,
     src: tribes_of_midgard,
     alt: 'Slide 6',
     caption: 'Slide 6',
