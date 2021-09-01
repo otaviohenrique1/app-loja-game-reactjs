@@ -52,12 +52,36 @@ export function GamePage() {
 
   return (
     <ContainerApp>
-      <TituloEstilizado titulo={'Game Page'}/>
-      <h2>{data.nome}</h2>
+      <img
+        src={data.src}
+        alt={data.alt}
+        style={{
+          width: '450px'
+        }}
+      />
+      <TituloEstilizado titulo={data.nome}/>
+      <div style={{ marginBottom: '20px' }}>
+        <span style={{
+          fontSize: '1.2rem',
+          marginRight: '5px'
+        }}>
+          {`-${data.desconto}%`}
+        </span>
+        <span style={{ marginRight: '10px' }}>
+          {`R$${data.preco}`}
+        </span>
+        <span style={{
+          textDecoration: 'line-through',
+          fontSize: '.8rem'
+        }}>
+          {`R$${data.preco}`}
+        </span>
+      </div>
+      <p>{data.descricao}</p>
     </ContainerApp>
   );
 }
 
 const TituloEstilizado = styled(Titulo)`
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 `;

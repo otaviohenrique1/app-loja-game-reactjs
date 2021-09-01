@@ -6,6 +6,11 @@ export function MensagemErro(mensagem: string) {
   return mensagem;
 }
 
+export function aplicaDesconto(valorDesconto: number, preco: number): string {
+  let resultado = preco - ((preco * valorDesconto) / 100);
+  return resultado.toFixed(2).replace('.', ',');
+}
+
 /**
  * Formata data -> dia/mes/ano
  */

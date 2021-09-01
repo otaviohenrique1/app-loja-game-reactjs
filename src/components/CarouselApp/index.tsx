@@ -75,6 +75,7 @@ export function CarouselPromocoes() {
               preco={items_lista_games[0].preco}
               descricao={items_lista_games[0].descricao}
               desconto={items_lista_games[0].desconto}
+              id={(items_lista_games[0].id).toString()}
             />
           </Col>
           <Col md={4}>
@@ -85,6 +86,7 @@ export function CarouselPromocoes() {
               preco={items_lista_games[1].preco}
               descricao={items_lista_games[1].descricao}
               desconto={items_lista_games[1].desconto}
+              id={(items_lista_games[1].id).toString()}
             />
           </Col>
           <Col md={4}>
@@ -95,6 +97,7 @@ export function CarouselPromocoes() {
               preco={items_lista_games[2].preco}
               descricao={items_lista_games[2].descricao}
               desconto={items_lista_games[2].desconto}
+              id={(items_lista_games[2].id).toString()}
             />
           </Col>
         </Row>

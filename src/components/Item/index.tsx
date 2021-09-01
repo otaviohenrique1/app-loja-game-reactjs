@@ -1,8 +1,10 @@
 import { Card, CardBody, CardFooter, CardImg, CardSubtitle, CardText, CardTitle } from "reactstrap";
 import styled from "styled-components";
+import { aplicaDesconto } from "../../utils/utils";
 import { BotaoLink } from "../Botao";
 
 interface ItemCardProps {
+  id: string;
   src: string;
   alt: string;
   nome: string;
@@ -24,11 +26,6 @@ const CardSubtitleEstilizado = styled(CardSubtitle)`
     font-size: .8rem;
   }
 `;
-
-function aplicaDesconto(valorDesconto: number, preco: number): string {
-  let resultado = preco - ((preco * valorDesconto) / 100);
-  return resultado.toFixed(2).replace('.', ',');
-}
 
 export function ItemCardPromocao(props: ItemCardProps) {
   const valorDesconto = props.desconto;
@@ -55,7 +52,7 @@ export function ItemCardPromocao(props: ItemCardProps) {
           style={{ marginRight: '10px' }}
         />
         <BotaoLinkEstilizado
-          rota='/dashboard'
+          rota={`/game/${props.id}`}
           label_button='Detalhes'
           color="primary"
         />
