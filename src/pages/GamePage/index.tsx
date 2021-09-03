@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
 import { items_lista_games } from "../../utils/lista_games";
+import { Preco } from "../../components/Preco";
 
 interface GamePageParams {
   id: string;
@@ -60,23 +61,11 @@ export function GamePage() {
         }}
       />
       <TituloEstilizado titulo={data.nome}/>
-      <div style={{ marginBottom: '20px' }}>
-        <span style={{
-          fontSize: '1.2rem',
-          marginRight: '5px'
-        }}>
-          {`-${data.desconto}%`}
-        </span>
-        <span style={{ marginRight: '10px' }}>
-          {`R$${data.preco}`}
-        </span>
-        <span style={{
-          textDecoration: 'line-through',
-          fontSize: '.8rem'
-        }}>
-          {`R$${data.preco}`}
-        </span>
-      </div>
+      <Preco
+        style={{ marginBottom: '20px' }}
+        desconto={data.desconto}
+        preco={parseFloat(data.preco)}
+      />
       <p>{data.descricao}</p>
     </ContainerApp>
   );

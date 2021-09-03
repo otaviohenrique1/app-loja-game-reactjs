@@ -6,9 +6,13 @@ export function MensagemErro(mensagem: string) {
   return mensagem;
 }
 
+export function ajustaPreco(valor: number): string {
+  return valor.toFixed(2).replace('.', ',');
+}
+
 export function aplicaDesconto(valorDesconto: number, preco: number): string {
   let resultado = preco - ((preco * valorDesconto) / 100);
-  return resultado.toFixed(2).replace('.', ',');
+  return ajustaPreco(resultado);
 }
 
 /**
