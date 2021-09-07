@@ -15,7 +15,7 @@ interface DataTypes {
   src: string;
   alt: string;
   nome: string;
-  preco: string;
+  preco: number;
   descricao: string;
   desconto: number;
 }
@@ -24,7 +24,7 @@ const initialValuesData: DataTypes = {
   src: '',
   alt: '',
   nome: '',
-  preco: '',
+  preco: 0,
   descricao: '',
   desconto: 0,
 };
@@ -64,7 +64,7 @@ export function GamePage() {
       <Preco
         style={{ marginBottom: '20px' }}
         desconto={data.desconto}
-        preco={parseFloat(data.preco)}
+        preco={data.preco}
       />
       <p>{data.descricao}</p>
     </ContainerApp>

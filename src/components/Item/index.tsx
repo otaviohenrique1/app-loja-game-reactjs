@@ -8,7 +8,7 @@ interface ItemCardProps {
   src: string;
   alt: string;
   nome: string;
-  preco: string;
+  preco: number;
   descricao: string;
   desconto: number;
 }
@@ -22,7 +22,7 @@ export function ItemCardPromocao(props: ItemCardProps) {
         <CardSubtitle tag="h6" className="mb-2">
           <Preco
             desconto={props.desconto}
-            preco={parseFloat(props.preco)}
+            preco={props.preco}
           />
         </CardSubtitle>
         <CardText>{props.descricao}</CardText>
