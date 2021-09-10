@@ -124,3 +124,7 @@ export const ValidationSchemaCadastroUsuario = Yup.object().shape({
   celular: Yup.string().required(MensagemErroCampoVazio('celular')),
   url_personalizado: Yup.string().required(MensagemErroCampoVazio('url personalizado'))
 });
+
+export interface GameData {
+  id: number;
+}

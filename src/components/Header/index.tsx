@@ -145,7 +145,7 @@ function DropdownCadastros() {
         />
         <DropdownItem divider />
         <BotaoDropdownLink
-          to='/dashboard'
+          to='/cadastro/game'
           label_button='Novo game'
         />
       </DropdownMenu>

@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import { ContainerApp } from "../../components/ContainerApp";
-import { Titulo } from "../../components/Titulo";
+import { ContainerApp } from "../../../components/ContainerApp";
+import { Titulo } from "../../../components/Titulo";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
-import { items_lista_games } from "../../utils/lista_games";
-import { Preco } from "../../components/Preco";
+import { items_lista_games } from "../../../utils/lista_games";
+import { Preco } from "../../../components/Preco";
 
 interface GamePageParams {
   id: string;
